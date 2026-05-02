@@ -179,7 +179,7 @@ trust_score = max(0, trust_score - total_penalty)
 | Icons            | Lucide React + Google Material Symbols (CDN)      |
 | Linting          | ESLint 10 + typescript-eslint + react-hooks plugin|
 
----
+
 
 ## Project Structure
 

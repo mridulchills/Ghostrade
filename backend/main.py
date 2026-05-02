@@ -9,6 +9,16 @@ from engine.fetcher import fetch_ohlcv
 from engine.signals import compute_signals
 from engine.anomaly import run_anomaly_detection
 from engine.scorer import compute_trust_score
+from fastapi import Depends
+from sqlalchemy.orm import Session
+from database import engine, get_db
+from models import Base
+import models
+import schemas
+from twilio.rest import Client
+import os
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="GHOSTRADE API")
 
@@ -115,6 +125,93 @@ def analyze_ticker(req: AnalyzeRequest):
     except Exception as e:
         print(traceback.format_exc())
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
+
+@app.get("/api/watchlist/{user_id}", response_model=List[schemas.WatchlistItem])
+def get_watchlist(user_id: str, db: Session = Depends(get_db)):
+    return db.query(models.Watchlist).filter(models.Watchlist.user_id == user_id).all()
+
+@app.post("/api/watchlist", response_model=schemas.WatchlistItem)
+def add_watchlist(item: schemas.WatchlistCreate, db: Session = Depends(get_db)):
+    count = db.query(models.Watchlist).filter(models.Watchlist.user_id == item.user_id).count()
+    if count >= 10:
+        raise HTTPException(status_code=400, detail="Maximum 10 tickers allowed in watchlist.")
+    
+    db_item = models.Watchlist(user_id=item.user_id, ticker=item.ticker.upper())
+    db.add(db_item)
+    db.commit()
+    db.refresh(db_item)
+    return db_item
+
+@app.delete("/api/watchlist/{item_id}")
+def delete_watchlist(item_id: int, db: Session = Depends(get_db)):
+    db_item = db.query(models.Watchlist).filter(models.Watchlist.id == item_id).first()
+    if not db_item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    db.delete(db_item)
+    db.commit()
+    return {"message": "Deleted successfully"}
+
+@app.get("/api/alerts/{user_id}", response_model=List[schemas.AlertItem])
+def get_alerts(user_id: str, db: Session = Depends(get_db)):
+    return db.query(models.Alert).filter(models.Alert.user_id == user_id).all()
+
+@app.post("/api/alerts", response_model=schemas.AlertItem)
+def add_alert(item: schemas.AlertCreate, db: Session = Depends(get_db)):
+    db_item = models.Alert(
+        user_id=item.user_id,
+        ticker=item.ticker.upper(),
+        trust_score_cutoff=item.trust_score_cutoff,
+        phone_number=item.phone_number
+    )
+    db.add(db_item)
+    db.commit()
+    db.refresh(db_item)
+    return db_item
+
+@app.delete("/api/alerts/{item_id}")
+def delete_alert(item_id: int, db: Session = Depends(get_db)):
+    db_item = db.query(models.Alert).filter(models.Alert.id == item_id).first()
+    if not db_item:
+        raise HTTPException(status_code=404, detail="Alert not found")
+    db.delete(db_item)
+    db.commit()
+@app.post("/api/alerts/check")
+def check_alerts(db: Session = Depends(get_db)):
+    account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+    auth_token = os.getenv('TWILIO_AUTH_TOKEN')
+    from_phone_number = os.getenv('TWILIO_PHONE_NUMBER')
+    
+    if not account_sid or not auth_token or not from_phone_number:
+        raise HTTPException(status_code=500, detail="Twilio credentials not configured")
+        
+    client = Client(account_sid, auth_token)
+    
+    alerts = db.query(models.Alert).all()
+    triggered = []
+    
+    for alert in alerts:
+        try:
+            # Reusing the existing analyze logic 
+            df = fetch_ohlcv(alert.ticker)
+            df = compute_signals(df)
+            df = run_anomaly_detection(df)
+            result = compute_trust_score(df)
+            
+            score = result.get('trust_score', 0)
+            
+            if score <= alert.trust_score_cutoff: # If it drops below or hits the cutoff
+                # Send SMS
+                message = client.messages.create(
+                    body=f"🚨 GHOSTRADE ALERT 🚨\n\nTicker: {alert.ticker}\nTrust Score: {score}/100\nThreshold: {alert.trust_score_cutoff}\n\nReview immediately on your dashboard.",
+                    from_=from_phone_number,
+                    to=alert.phone_number
+                )
+                triggered.append({"id": alert.id, "ticker": alert.ticker, "score": score})
+        except Exception as e:
+            print(f"Error processing alert {alert.id}: {str(e)}")
+            continue
+            
+    return {"message": "Checked alerts", "triggered": triggered}
 
 if __name__ == "__main__":
     import uvicorn

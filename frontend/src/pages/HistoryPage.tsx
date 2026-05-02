@@ -135,6 +135,8 @@ export default function HistoryPage() {
             <nav className="hidden md:flex gap-6">
               <Link to={`/dashboard/${ticker || 'TSLA'}`} className="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors">Dashboard</Link>
               <Link to={`/history/${ticker || 'TSLA'}`} className="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-white-400 border-b-2 border-white-500 pb-1">History</Link>
+              <Link to="/watchlist" className="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors">Watchlist</Link>
+              <Link to="/alerts" className="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors">Alerts</Link>
             </nav>
           </div>
 

@@ -5,6 +5,8 @@ import DashboardPage from './pages/DashboardPage'
 import HistoryPage from './pages/HistoryPage'
 import AuthPage from './pages/AuthPage'
 import SSOCallback from './pages/SSOCallback'
+import WatchlistPage from './pages/WatchlistPage'
+import AlertsPage from './pages/AlertsPage'
 
 export default function App() {
   return (
@@ -41,6 +43,16 @@ export default function App() {
           </Show>
         } />
         <Route path="/sso-callback" element={<SSOCallback />} />
+        <Route path="/watchlist" element={
+          <Show when="signed-in" fallback={<Navigate to="/auth" replace />}>
+            <WatchlistPage />
+          </Show>
+        } />
+        <Route path="/alerts" element={
+          <Show when="signed-in" fallback={<Navigate to="/auth" replace />}>
+            <AlertsPage />
+          </Show>
+        } />
       </Routes>
     </BrowserRouter>
   )

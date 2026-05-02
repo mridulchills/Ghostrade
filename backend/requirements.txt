@@ -5,3 +5,7 @@ pandas
 numpy
 scikit-learn
 pydantic
+sqlalchemy
+psycopg2-binary
+twilio
+python-dotenv

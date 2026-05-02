@@ -62,6 +62,12 @@ export default function LandingPage() {
             </Link>
           </Show>
           <Show when="signed-in">
+            <Link to="/watchlist" className="px-4 py-1.5 text-[10px] font-label-caps text-neutral-300 border border-white/10 rounded hover:bg-white/5 transition-all tracking-widest">
+              WATCHLIST
+            </Link>
+            <Link to="/alerts" className="px-4 py-1.5 text-[10px] font-label-caps text-neutral-300 border border-white/10 rounded hover:bg-white/5 transition-all tracking-widest">
+              ALERTS
+            </Link>
             <UserButton appearance={{ elements: { avatarBox: "w-8 h-8" } }} />
           </Show>
         </div>

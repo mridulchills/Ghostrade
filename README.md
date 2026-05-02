@@ -2,7 +2,7 @@
 
 **Real-Time Market Integrity Engine**
 
-GHOSTRADE is a full-stack financial surveillance tool that audits market behavior rather than predicting price. Given any stock ticker, it fetches one year of OHLCV data, computes four proprietary statistical microstructure signals, runs an unsupervised machine learning anomaly detection pipeline, and outputs a Trust Score between 0 and 100 — classifying any market move as Stable, Suspicious, or Ghost Trade.
+GHOSTRADE is a full-stack financial surveillance tool that audits market behavior rather than predicting price. Given any stock ticker, it fetches one year of OHLCV data, computes four proprietary statistical microstructure signals, runs an unsupervised machine learning anomaly detection pipeline, and outputs a Trust Score between 0 and 100  classifying any market move as Stable, Suspicious, or Ghost Trade.
 
 ---
 

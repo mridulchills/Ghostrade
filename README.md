@@ -38,7 +38,7 @@ The core question GHOSTRADE answers is:
 
 The system does not predict price direction. It does not give buy or sell signals. It exclusively evaluates the structural integrity of recent market behavior for a given ticker.
 
----
+
 
 ## Architecture
 

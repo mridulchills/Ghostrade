@@ -68,7 +68,7 @@ User Input (Ticker)
 
 The backend is a stateless REST API. Each request to `/api/analyze` runs the full pipeline end-to-end for the requested ticker. No session state is maintained between requests.
 
----
+
 
 ## Signal Engine
 

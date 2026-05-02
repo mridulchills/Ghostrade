@@ -149,7 +149,7 @@ for each anomalous_day:
 trust_score = max(0, trust_score - total_penalty)
 ```
 
----
+
 
 ## Tech Stack
 

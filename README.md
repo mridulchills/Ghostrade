@@ -236,7 +236,7 @@ GHOSTRADE/
 - **npm** 9 or higher
 - Internet access for yfinance data fetching (offline CSV cache is used as fallback)
 
----
+
 
 ## Installation
 

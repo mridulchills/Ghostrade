@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useUser } from '@clerk/react'
 import { useNavigate } from 'react-router-dom'
-import { Plus, Trash2, ArrowLeft, Loader2, Bell } from 'lucide-react'
+import { Plus, Trash2, ArrowLeft, Bell } from 'lucide-react'
 import { API_URL } from '../config'
+import LiquidLoader from '../components/LiquidLoader'
+import { BackgroundLines } from '../components/ui/background-lines'
 
 export default function AlertsPage() {
   const { user } = useUser()
@@ -77,16 +79,19 @@ export default function AlertsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white font-sans selection:bg-zinc-800">
-      <div className="max-w-4xl mx-auto px-6 py-12">
+    <BackgroundLines className="bg-zinc-950 text-white font-sans selection:bg-zinc-800">
+      <div className="max-w-4xl mx-auto px-6 py-12 relative z-20">
         <div className="flex items-center gap-4 mb-8">
-          <button onClick={() => navigate('/')} className="p-2 hover:bg-zinc-800 rounded-full transition-colors">
+          <button onClick={() => navigate('/')} className="p-2 hover:bg-zinc-800 rounded-full transition-colors relative z-20">
             <ArrowLeft className="w-6 h-6 text-zinc-400" />
           </button>
-          <h1 className="text-3xl font-medium tracking-tight">Active Alerts</h1>
+          <div className="flex items-center gap-3 relative z-20">
+            <LiquidLoader size={40} progress={100} />
+            <h1 className="text-3xl font-medium tracking-tight">Active Alerts</h1>
+          </div>
         </div>
 
-        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 mb-10">
+        <div className="bg-zinc-900/80 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 mb-10 shadow-xl">
           <h2 className="text-xl font-medium mb-6 flex items-center gap-2">
             <Bell className="w-5 h-5 text-zinc-400" />
             Set Up New Alert
@@ -99,7 +104,7 @@ export default function AlertsPage() {
                 value={ticker}
                 onChange={(e) => setTicker(e.target.value)}
                 placeholder="AAPL"
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600"
+                className="w-full bg-zinc-950/50 border border-zinc-800 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600"
                 required
               />
             </div>
@@ -112,7 +117,7 @@ export default function AlertsPage() {
                 placeholder="50"
                 min="0"
                 max="100"
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600"
+                className="w-full bg-zinc-950/50 border border-zinc-800 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600"
                 required
               />
             </div>
@@ -123,7 +128,7 @@ export default function AlertsPage() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="+18777804236"
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600"
+                className="w-full bg-zinc-950/50 border border-zinc-800 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600"
                 required
               />
             </div>
@@ -144,18 +149,18 @@ export default function AlertsPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-8 h-8 animate-spin text-zinc-500" />
+            <LiquidLoader size={120} />
           </div>
         ) : alerts.length === 0 ? (
-          <div className="text-center py-20 text-zinc-500 border border-dashed border-zinc-800 rounded-2xl">
+          <div className="text-center py-20 text-zinc-500 border border-dashed border-zinc-800 rounded-2xl bg-zinc-950/50 backdrop-blur-sm">
             You don't have any active alerts.
           </div>
         ) : (
           <div className="space-y-4">
             {alerts.map(item => (
-              <div key={item.id} className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-5 flex items-center justify-between">
+              <div key={item.id} className="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-5 flex items-center justify-between">
                 <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 bg-zinc-950 rounded-lg flex items-center justify-center border border-zinc-800">
+                  <div className="w-16 h-16 bg-zinc-950 rounded-lg flex items-center justify-center border border-zinc-800 shadow-inner">
                     <span className="text-xl font-bold">{item.ticker}</span>
                   </div>
                   <div>
@@ -178,7 +183,6 @@ export default function AlertsPage() {
           </div>
         )}
       </div>
-    </div>
+    </BackgroundLines>
   )
-
 }

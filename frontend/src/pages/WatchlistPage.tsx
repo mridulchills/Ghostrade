@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useUser } from '@clerk/react'
 import { useNavigate } from 'react-router-dom'
-import { Plus, Trash2, ArrowLeft, Loader2 } from 'lucide-react'
+import { Plus, Trash2, ArrowLeft } from 'lucide-react'
 import { API_URL } from '../config'
+import LiquidLoader from '../components/LiquidLoader'
+import { BackgroundLines } from '../components/ui/background-lines'
 
 export default function WatchlistPage() {
   const { user } = useUser()
@@ -87,16 +89,19 @@ export default function WatchlistPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white font-sans selection:bg-zinc-800">
+    <BackgroundLines className="bg-zinc-950 text-white font-sans selection:bg-zinc-800">
       <div className="max-w-6xl mx-auto px-6 py-12">
         <div className="flex items-center gap-4 mb-8">
-          <button onClick={() => navigate('/')} className="p-2 hover:bg-zinc-800 rounded-full transition-colors">
+          <button onClick={() => navigate('/')} className="p-2 hover:bg-zinc-800 rounded-full transition-colors relative z-20">
             <ArrowLeft className="w-6 h-6 text-zinc-400" />
           </button>
-          <h1 className="text-3xl font-medium tracking-tight">Your Watchlist</h1>
+          <div className="flex items-center gap-3 relative z-20">
+            <LiquidLoader size={40} progress={100} />
+            <h1 className="text-3xl font-medium tracking-tight">Your Watchlist</h1>
+          </div>
         </div>
 
-        <form onSubmit={addTicker} className="mb-12 flex items-center gap-4 max-w-md">
+        <form onSubmit={addTicker} className="mb-12 flex items-center gap-4 max-w-md relative z-20">
           <input
             type="text"
             value={tickerInput}
@@ -116,15 +121,15 @@ export default function WatchlistPage() {
         </form>
 
         {loading ? (
-          <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-8 h-8 animate-spin text-zinc-500" />
+          <div className="flex items-center justify-center py-20 relative z-20">
+            <LiquidLoader size={120} />
           </div>
         ) : watchlist.length === 0 ? (
-          <div className="text-center py-20 text-zinc-500 border border-dashed border-zinc-800 rounded-2xl">
+          <div className="text-center py-20 text-zinc-500 border border-dashed border-zinc-800 rounded-2xl relative z-20 bg-zinc-950/50 backdrop-blur-sm">
             Your watchlist is empty. Add up to 10 tickers to monitor them here.
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-20">
             {watchlist.map(item => {
               const data = analysisData[item.ticker]
               const isLoading = analyzing[item.ticker]
@@ -133,7 +138,7 @@ export default function WatchlistPage() {
                 <div key={item.id} className="relative group">
                   <div
                     onClick={() => navigate(`/dashboard/${item.ticker}`)}
-                    className="block bg-zinc-900 border border-zinc-800 rounded-2xl p-6 cursor-pointer hover:border-zinc-700 hover:bg-zinc-800/50 transition-all h-full"
+                    className="block bg-zinc-900/80 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 cursor-pointer hover:border-zinc-700 hover:bg-zinc-800/80 transition-all h-full"
                   >
                     <div className="flex justify-between items-start mb-6">
                       <div>
@@ -152,12 +157,12 @@ export default function WatchlistPage() {
 
                     {isLoading ? (
                       <div className="flex justify-center py-6">
-                        <Loader2 className="w-6 h-6 animate-spin text-zinc-600" />
+                        <LiquidLoader size={60} />
                       </div>
                     ) : data?.signals ? (
                       <div className="grid grid-cols-2 gap-3 mt-4">
                         {Object.entries(data.signals).map(([key, sig]: any) => (
-                          <div key={key} className="bg-zinc-950 rounded-lg p-3 border border-zinc-800/50">
+                          <div key={key} className="bg-zinc-950/50 rounded-lg p-3 border border-zinc-800/50">
                             <div className="text-xs text-zinc-500 font-medium mb-1">{sig.name}</div>
                             <div className={`text-sm ${sig.flagged ? 'text-red-400' : 'text-zinc-300'}`}>
                               {sig.status} ({sig.z_score})
@@ -175,7 +180,7 @@ export default function WatchlistPage() {
                       e.stopPropagation();
                       deleteTicker(item.id);
                     }}
-                    className="absolute top-4 right-4 p-2 bg-red-500/10 text-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500/20"
+                    className="absolute top-4 right-4 p-2 bg-red-500/10 text-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500/20 z-30"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -185,6 +190,6 @@ export default function WatchlistPage() {
           </div>
         )}
       </div>
-    </div>
+    </BackgroundLines>
   )
 }

@@ -9,7 +9,7 @@ import { API_URL } from '../config'
 export default function DashboardPage() {
   const { ticker } = useParams<{ ticker: string }>()
   const navigate = useNavigate()
-  
+
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [data, setData] = useState<AnalyzeResponse | null>(null)
@@ -25,7 +25,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
     if (!ticker) return
-    
+
     let isMounted = true
     setLoading(true)
     setError(null)
@@ -90,13 +90,13 @@ export default function DashboardPage() {
             <span className="material-symbols-outlined text-error text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>error</span>
           </div>
           <h2 className="text-xl font-bold text-white mb-3 tracking-tight">Analysis Failed</h2>
-          <p className="text-sm text-neutral-400 font-mono leading-relaxed mb-8 break-words">
+          <p className="text-sm text-neutral-400 leading-relaxed mb-8 break-words">
             {error || 'Unknown error occurred'}
           </p>
           <div className="my-6 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-[11px] text-neutral-500 font-mono hover:text-neutral-200 transition-colors tracking-widest"
+            className="inline-flex items-center gap-2 text-[11px] text-neutral-500 hover:text-neutral-200 transition-colors tracking-widest"
           >
             ← RETURN TO HUB
           </Link>
@@ -131,28 +131,28 @@ export default function DashboardPage() {
   return (
     <div className="flex min-h-screen bg-background text-on-surface">
       {/* SideNavBar */}
-      <aside className="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 dark:bg-neutral-950 border-r border-white/5 flex flex-col z-40 shadow-2xl shadow-cyan-900/5 hidden md:flex">
+      <aside className="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 dark:bg-neutral-950 border-r border-white/5 flex flex-col z-40 shadow-2xl shadow-white-900/5 hidden md:flex">
         <div className="p-6 border-b border-white/5">
           <div className="flex items-center gap-2 mb-1">
             <div className="h-2 w-2 bg-secondary rounded-full shadow-[0_0_8px_#4edea3]"></div>
-            <span className="text-cyan-500 font-bold uppercase text-xs tracking-widest">INTEGRITY ENGINE</span>
+            <span className="text-white-500 font-bold uppercase text-xs tracking-widest">INTEGRITY ENGINE</span>
           </div>
           <p className="text-[10px] text-neutral-500 font-data-mono uppercase">V2.04 ACTIVE // SYSTEM_STABLE</p>
         </div>
-        
+
         <nav className="flex-1 py-4 flex flex-col">
           {sidebarItems.map(item => (
-            <button 
+            <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
-              className={`flex items-center gap-4 px-6 py-3 transition-all duration-200 ${activeTab === item.id ? 'bg-cyan-500/10 text-cyan-400 border-r-2 border-cyan-500' : 'text-neutral-500 hover:text-neutral-200 hover:bg-white/5'}`}
+              className={`flex items-center gap-4 px-6 py-3 transition-all duration-200 ${activeTab === item.id ? 'bg-white-500/10 text-white-400 border-r-2 border-white-500' : 'text-neutral-500 hover:text-neutral-200 hover:bg-white/5'}`}
             >
               <span className="material-symbols-outlined text-sm">{item.icon}</span>
               <span className="font-['Inter'] uppercase text-[11px] font-bold tracking-widest">{item.id}</span>
             </button>
           ))}
         </nav>
-        
+
         <div className="p-4 mt-auto border-t border-white/5">
           <button className="w-full bg-black text-black font-label-caps text-[10px] py-3 rounded hover:bg-black transition-all active:scale-95">
             RUN DIAGNOSTICS
@@ -164,18 +164,18 @@ export default function DashboardPage() {
         {/* TopAppBar */}
         <header className="sticky top-0 z-50 flex justify-between items-center px-8 h-16 bg-[#0A0A0A]/80 backdrop-blur-xl border-b border-white/10">
           <div className="flex items-center gap-8">
-            <Link to="/" className="text-xl font-black tracking-tighter text-cyan-500">GHOSTRADE</Link>
+            <Link to="/" className="text-xl font-black tracking-tighter text-white-500">GHOSTRADE</Link>
             <nav className="hidden md:flex gap-6">
-              <Link to={`/dashboard/${ticker || 'TSLA'}`} className="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-cyan-400 border-b-2 border-cyan-500 pb-1">Dashboard</Link>
+              <Link to={`/dashboard/${ticker || 'TSLA'}`} className="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-white-400 border-b-2 border-white-500 pb-1">Dashboard</Link>
               <Link to={`/history/${ticker || 'TSLA'}`} className="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors">History</Link>
             </nav>
           </div>
-          
+
           <div className="flex items-center gap-6">
             <form onSubmit={handleSearch} className="hidden lg:flex items-center bg-surface-container-low border border-white/5 px-3 py-1.5 rounded-lg">
               <span className="material-symbols-outlined text-neutral-500 text-sm">search</span>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 className="bg-transparent border-none focus:ring-0 text-xs font-data-mono w-48 placeholder:text-neutral-600 outline-none ml-2"
                 placeholder="Search NVDA, AAPL, BTC..."
                 value={searchQuery}
@@ -221,15 +221,15 @@ export default function DashboardPage() {
               </div>
               <div className="flex items-center gap-4">
                 <span className="text-lg font-data-mono text-secondary">
-                  ${latestPrice} 
+                  ${latestPrice}
                 </span>
                 <span className="text-xs text-neutral-500 font-data-mono tracking-widest uppercase">
                   Real-time Data Stream Enabled
                 </span>
               </div>
             </div>
-            
-            <button onClick={handleExport} className="flex items-center gap-2 px-4 py-2 border border-white/10 hover:border-cyan-500/50 rounded hover:bg-cyan-500/10 transition-all font-data-mono text-xs text-cyan-400">
+
+            <button onClick={handleExport} className="flex items-center gap-2 px-4 py-2 border border-white/10 hover:border-white-500/50 rounded hover:bg-white-500/10 transition-all font-data-mono text-xs text-white-400">
               <span className="material-symbols-outlined text-sm">download</span>
               EXPORT REPORT
             </button>
@@ -243,7 +243,7 @@ export default function DashboardPage() {
                 <h2 className="text-2xl font-bold text-white tracking-tight">{activeTab} Module</h2>
               </div>
             )
-            
+
             const sig = data.signals[sigKey]
             const isCrit = sig.status === 'CRITICAL'
             const isWarning = sig.status === 'WARNING'
@@ -268,70 +268,70 @@ export default function DashboardPage() {
                     <span className="material-symbols-outlined">close</span>
                   </button>
                 </div>
-                
+
                 <div className="flex-1 glass-panel rounded-xl border border-white/5 p-6 min-h-[400px]">
-                   <Plot
-                      data={[
-                        {
-                          x: data.chart_data.map((d: any) => d.date),
-                          y: data.chart_data.map((d: any) => d[`${sigKey}_z`]),
-                          type: 'scatter',
-                          mode: 'lines+markers',
-                          name: `${sigKey} Z-Score`,
-                          line: { color: isCrit ? plotTheme.error : plotTheme.primary, width: 2 },
-                          marker: { size: 4 }
-                        },
-                        {
-                          x: [data.chart_data[0]?.date, data.chart_data[data.chart_data.length-1]?.date],
-                          y: [1, 1],
-                          type: 'scatter',
-                          mode: 'lines',
-                          name: 'Warning Threshold',
-                          line: { color: '#f0c040', width: 1, dash: 'dash' }
-                        },
-                        {
-                          x: [data.chart_data[0]?.date, data.chart_data[data.chart_data.length-1]?.date],
-                          y: [-1, -1],
-                          type: 'scatter',
-                          mode: 'lines',
-                          name: 'Warning Threshold (-)',
-                          line: { color: '#f0c040', width: 1, dash: 'dash' },
-                          showlegend: false
-                        },
-                        {
-                          x: [data.chart_data[0]?.date, data.chart_data[data.chart_data.length-1]?.date],
-                          y: [2.5, 2.5],
-                          type: 'scatter',
-                          mode: 'lines',
-                          name: 'Critical Threshold',
-                          line: { color: plotTheme.error, width: 1, dash: 'dash' }
-                        },
-                        {
-                          x: [data.chart_data[0]?.date, data.chart_data[data.chart_data.length-1]?.date],
-                          y: [-2.5, -2.5],
-                          type: 'scatter',
-                          mode: 'lines',
-                          name: 'Critical Threshold (-)',
-                          line: { color: plotTheme.error, width: 1, dash: 'dash' },
-                          showlegend: false
-                        }
-                      ]}
-                      layout={{
-                        autosize: true,
-                        margin: { t: 20, b: 30, l: 40, r: 20 },
-                        paper_bgcolor: 'rgba(0,0,0,0)',
-                        plot_bgcolor: 'rgba(0,0,0,0)',
-                        font: { color: '#e5e2e1', family: 'Space Grotesk' },
-                        xaxis: { showgrid: true, gridcolor: 'rgba(255,255,255,0.05)', color: '#869397' },
-                        yaxis: { title: 'Z-Score Deviation', showgrid: true, gridcolor: 'rgba(255,255,255,0.05)', color: '#869397' },
-                        hovermode: 'x unified',
-                        showlegend: true,
-                        legend: { orientation: 'h', y: 1.1 }
-                      }}
-                      useResizeHandler={true}
-                      style={{ width: '100%', height: '100%' }}
-                      config={{ displayModeBar: false }}
-                    />
+                  <Plot
+                    data={[
+                      {
+                        x: data.chart_data.map((d: any) => d.date),
+                        y: data.chart_data.map((d: any) => d[`${sigKey}_z`]),
+                        type: 'scatter',
+                        mode: 'lines+markers',
+                        name: `${sigKey} Z-Score`,
+                        line: { color: isCrit ? plotTheme.error : plotTheme.primary, width: 2 },
+                        marker: { size: 4 }
+                      },
+                      {
+                        x: [data.chart_data[0]?.date, data.chart_data[data.chart_data.length - 1]?.date],
+                        y: [1, 1],
+                        type: 'scatter',
+                        mode: 'lines',
+                        name: 'Warning Threshold',
+                        line: { color: '#f0c040', width: 1, dash: 'dash' }
+                      },
+                      {
+                        x: [data.chart_data[0]?.date, data.chart_data[data.chart_data.length - 1]?.date],
+                        y: [-1, -1],
+                        type: 'scatter',
+                        mode: 'lines',
+                        name: 'Warning Threshold (-)',
+                        line: { color: '#f0c040', width: 1, dash: 'dash' },
+                        showlegend: false
+                      },
+                      {
+                        x: [data.chart_data[0]?.date, data.chart_data[data.chart_data.length - 1]?.date],
+                        y: [2.5, 2.5],
+                        type: 'scatter',
+                        mode: 'lines',
+                        name: 'Critical Threshold',
+                        line: { color: plotTheme.error, width: 1, dash: 'dash' }
+                      },
+                      {
+                        x: [data.chart_data[0]?.date, data.chart_data[data.chart_data.length - 1]?.date],
+                        y: [-2.5, -2.5],
+                        type: 'scatter',
+                        mode: 'lines',
+                        name: 'Critical Threshold (-)',
+                        line: { color: plotTheme.error, width: 1, dash: 'dash' },
+                        showlegend: false
+                      }
+                    ]}
+                    layout={{
+                      autosize: true,
+                      margin: { t: 20, b: 30, l: 40, r: 20 },
+                      paper_bgcolor: 'rgba(0,0,0,0)',
+                      plot_bgcolor: 'rgba(0,0,0,0)',
+                      font: { color: '#e5e2e1', family: 'Space Grotesk' },
+                      xaxis: { showgrid: true, gridcolor: 'rgba(255,255,255,0.05)', color: '#869397' },
+                      yaxis: { title: 'Z-Score Deviation', showgrid: true, gridcolor: 'rgba(255,255,255,0.05)', color: '#869397' },
+                      hovermode: 'x unified',
+                      showlegend: true,
+                      legend: { orientation: 'h', y: 1.1 }
+                    }}
+                    useResizeHandler={true}
+                    style={{ width: '100%', height: '100%' }}
+                    config={{ displayModeBar: false }}
+                  />
                 </div>
               </div>
             )
@@ -342,7 +342,7 @@ export default function DashboardPage() {
             <div className="grid grid-cols-12 gap-6">
               {/* Trust Score Gauge */}
               <div className="col-span-12 lg:col-span-4 glass-panel rounded-xl p-8 flex flex-col items-center justify-center relative overflow-hidden">
-                <div 
+                <div
                   className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] via-transparent to-transparent pointer-events-none"
                   style={{ '--tw-gradient-from': scoreColor } as React.CSSProperties}
                 ></div>
@@ -361,7 +361,7 @@ export default function DashboardPage() {
                     <span className={`material-symbols-outlined shrink-0 ${scoreLabelColorClass}`}>analytics</span>
                     <h3 className="font-heading-md text-xl">Anomaly Explainer</h3>
                   </div>
-                  <div className="p-4 bg-surface-container-low border-l-2 border-cyan-500 mb-6">
+                  <div className="p-4 bg-surface-container-low border-l-2 border-white-500 mb-6">
                     <p className="text-on-surface-variant font-body-main text-sm">
                       The primary signal indicator for <strong>{ticker}</strong> is currently <strong>{data.result.top_flag}</strong> reaching <strong className="text-white">{data.result.top_flag_sigma.toFixed(1)}σ</strong> deviation.
                       Internal metrics confirm a <span className="text-primary font-bold">{(data.signals?.VAI?.z_score || 0).toFixed(1)} sigma deviation</span> in volume patterns over the rolling window.
@@ -382,7 +382,7 @@ export default function DashboardPage() {
                   </div>
                   <div>
                     <div className="text-[10px] text-neutral-500 font-label-caps mb-1">VOLUME SPIKE</div>
-                    <div className={`text-lg font-data-mono ${data.result.volume_spike_pct > 50 ? 'text-error' : 'text-cyan-500'}`}>{data.result.volume_spike_pct > 0 ? '+' : ''}{data.result.volume_spike_pct.toFixed(1)}%</div>
+                    <div className={`text-lg font-data-mono ${data.result.volume_spike_pct > 50 ? 'text-error' : 'text-white-500'}`}>{data.result.volume_spike_pct > 0 ? '+' : ''}{data.result.volume_spike_pct.toFixed(1)}%</div>
                   </div>
                 </div>
               </div>
@@ -391,14 +391,14 @@ export default function DashboardPage() {
               <div className="col-span-12 glass-panel rounded-xl p-6 overflow-hidden">
                 <div className="flex justify-between items-center mb-6">
                   <div className="flex items-center gap-2">
-                    <span className="material-symbols-outlined text-cyan-500 shrink-0">show_chart</span>
+                    <span className="material-symbols-outlined text-white-500 shrink-0">show_chart</span>
                     <h3 className="font-heading-md text-lg">Integrity Performance Flow</h3>
                   </div>
                   <div className="flex gap-2 bg-surface-container-lowest rounded p-1">
-                    <button className="px-3 py-1 font-label-caps text-[10px] bg-cyan-500 text-black rounded">1M</button>
+                    <button className="px-3 py-1 font-label-caps text-[10px] bg-white-500 text-black rounded">1M</button>
                   </div>
                 </div>
-                
+
                 <div className="h-80 w-full relative -ml-4">
                   <Plot
                     data={[
@@ -501,9 +501,9 @@ export default function DashboardPage() {
                       <div className="flex items-end justify-between">
                         <div className={`font-data-mono text-2xl ${textClass}`}>{sig.z_score > 0 ? '+' : ''}{sig.z_score.toFixed(2)}<span className="text-sm text-neutral-500">σ</span></div>
                         <div className="w-16 h-8 flex items-center justify-center">
-                           <div className="w-full bg-surface-container-highest h-1.5 rounded-full relative overflow-hidden">
-                             <div className={`absolute top-0 left-1/2 h-full rounded-full ${isCrit ? 'bg-error' : isWarning ? 'bg-[#f0c040]' : 'bg-secondary'}`} style={{ width: `${Math.min(sig.sigma * 10, 50)}%`, transform: sig.z_score < 0 ? 'translateX(-100%)' : '' }}></div>
-                           </div>
+                          <div className="w-full bg-surface-container-highest h-1.5 rounded-full relative overflow-hidden">
+                            <div className={`absolute top-0 left-1/2 h-full rounded-full ${isCrit ? 'bg-error' : isWarning ? 'bg-[#f0c040]' : 'bg-secondary'}`} style={{ width: `${Math.min(sig.sigma * 10, 50)}%`, transform: sig.z_score < 0 ? 'translateX(-100%)' : '' }}></div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -521,13 +521,13 @@ export default function DashboardPage() {
                   </div>
                   <div className="space-y-4">
                     <div className="flex justify-between items-center py-2 border-b border-white/5">
-                      <span className="text-[11px] font-data-mono text-cyan-400">LIVE</span>
+                      <span className="text-[11px] font-data-mono text-white-400">LIVE</span>
                       <span className="text-[11px] font-data-mono text-on-surface-variant text-right">Model Synced</span>
-                      <span className="text-[10px] font-label-caps px-2 py-0.5 bg-cyan-500/20 text-cyan-400 rounded">OK</span>
+                      <span className="text-[10px] font-label-caps px-2 py-0.5 bg-white-500/20 text-white-400 rounded">OK</span>
                     </div>
                     {data.signals && Object.keys(data.signals).map((k, i) => (
                       <div key={k} className="flex justify-between items-center py-2 border-b border-white/5">
-                        <span className="text-[11px] font-data-mono text-neutral-500">T-{i*15 + 15}s</span>
+                        <span className="text-[11px] font-data-mono text-neutral-500">T-{i * 15 + 15}s</span>
                         <span className="text-[11px] font-data-mono text-on-surface-variant text-right max-w-[150px] truncate">{k} deviation analysis</span>
                         <span className={`text-[10px] font-label-caps px-2 py-0.5 rounded ${Math.abs(data.signals[k].z_score) > 2 ? 'bg-error-container/20 text-error-container' : 'bg-secondary/20 text-secondary'}`}>
                           {Math.abs(data.signals[k].z_score) > 2 ? 'FLAGGED' : 'STABLE'}
@@ -542,7 +542,7 @@ export default function DashboardPage() {
 
             </div>
           )}
-          
+
           <div className="pb-8"></div>
         </main>
       </div>

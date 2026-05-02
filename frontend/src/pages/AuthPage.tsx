@@ -62,7 +62,7 @@ export default function AuthPage() {
               <h2 className="text-2xl font-bold text-white tracking-tighter mb-1">
                 {isSignUp ? "Create Your Identity" : "Secure Authentication"}
               </h2>
-              <p className="text-neutral-500 text-xs font-mono">
+              <p className="text-neutral-500 text-xs">
                 {isSignUp ? "Join the integrity engine network" : "Access your terminal dashboard"}
               </p>
             </div>
@@ -78,15 +78,15 @@ export default function AuthPage() {
                       headerTitle: "hidden",
                       headerSubtitle: "hidden",
                       socialButtonsBlockButton: "bg-white/5 border-white/10 hover:bg-white/10 text-white",
-                      formButtonPrimary: "bg-cyan-500 hover:bg-cyan-600 text-black font-bold uppercase tracking-widest h-12",
+                      formButtonPrimary: "bg-white-500 hover:bg-white-600 text-black font-bold uppercase tracking-widest h-12",
                       formFieldInput: "bg-white/5 border-white/10 text-white h-12",
                       footerActionText: "text-neutral-500",
-                      footerActionLink: "text-cyan-500 hover:text-cyan-400",
+                      footerActionLink: "text-white-500 hover:text-white-400",
                       dividerLine: "bg-white/10",
                       dividerText: "text-neutral-500",
                       formFieldLabel: "text-neutral-400",
                       identityPreviewText: "text-white",
-                      identityPreviewEditButton: "text-cyan-500"
+                      identityPreviewEditButton: "text-white-500"
                     }
                   }}
                 />
@@ -100,15 +100,15 @@ export default function AuthPage() {
                       headerTitle: "hidden",
                       headerSubtitle: "hidden",
                       socialButtonsBlockButton: "bg-white/5 border-white/10 hover:bg-white/10 text-white",
-                      formButtonPrimary: "bg-cyan-500 hover:bg-cyan-600 text-black font-bold uppercase tracking-widest h-12",
+                      formButtonPrimary: "bg-white-500 hover:bg-white-600 text-black font-bold uppercase tracking-widest h-12",
                       formFieldInput: "bg-white/5 border-white/10 text-white h-12",
                       footerActionText: "text-neutral-500",
-                      footerActionLink: "text-cyan-500 hover:text-cyan-400",
+                      footerActionLink: "text-white-500 hover:text-white-400",
                       dividerLine: "bg-white/10",
                       dividerText: "text-neutral-500",
                       formFieldLabel: "text-neutral-400",
                       identityPreviewText: "text-white",
-                      identityPreviewEditButton: "text-cyan-500"
+                      identityPreviewEditButton: "text-white-500"
                     }
                   }}
                 />
@@ -118,7 +118,7 @@ export default function AuthPage() {
             <div className="mt-4 text-center border-t border-white/5 pt-3">
               <button
                 onClick={() => navigate(isSignUp ? "/auth#sign-in" : "/auth#sign-up")}
-                className="text-white/90 text-xs font-mono hover:text-white transition-colors cursor-pointer bg-transparent border-0 outline-none"
+                className="text-white/90 text-xs hover:text-white transition-colors cursor-pointer bg-transparent border-0 outline-none"
               >
                 {isSignUp ? (
                   <>ALREADY HAVE AN ACCOUNT? <span className="text-blue-500 font-bold">SIGN IN</span></>
@@ -164,9 +164,9 @@ export default function AuthPage() {
                   <div className="mt-2 flex flex-col p-3 font-sans text-white w-full text-left">
                     <div className="flex items-center justify-between mb-0.5">
                       <div className="text-base font-bold">{feature.title}</div>
-                      <div className="text-[10px] text-gray-300 opacity-50 font-mono"></div>
+                      <div className="text-[10px] text-gray-300 opacity-50"></div>
                     </div>
-                    <div className="text-[10px] text-gray-400 font-mono mb-1 uppercase tracking-wider">{feature.label}</div>
+                    <div className="text-[10px] text-gray-400 mb-1 uppercase tracking-wider">{feature.label}</div>
                     <div className="text-xs text-neutral-300 leading-relaxed min-h-[32px]">{feature.desc}</div>
                   </div>
                 </button>

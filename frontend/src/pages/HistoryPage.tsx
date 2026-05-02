@@ -8,7 +8,7 @@ import { API_URL } from '../config'
 export default function HistoryPage() {
   const { ticker } = useParams<{ ticker: string }>()
   const navigate = useNavigate()
-  
+
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [data, setData] = useState<AnalyzeResponse | null>(null)
@@ -18,7 +18,7 @@ export default function HistoryPage() {
 
   useEffect(() => {
     if (!ticker) return
-    
+
     let isMounted = true
     setLoading(true)
     setError(null)
@@ -71,13 +71,13 @@ export default function HistoryPage() {
             <span className="material-symbols-outlined text-error text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>error</span>
           </div>
           <h2 className="text-xl font-bold text-white mb-3 tracking-tight">Analysis Failed</h2>
-          <p className="text-sm text-neutral-400 font-mono leading-relaxed mb-8 break-words">
+          <p className="text-sm text-neutral-400 leading-relaxed mb-8 break-words">
             {error || 'Unknown error occurred'}
           </p>
           <div className="my-6 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-[11px] text-neutral-500 font-mono hover:text-neutral-200 transition-colors tracking-widest"
+            className="inline-flex items-center gap-2 text-[11px] text-neutral-500 hover:text-neutral-200 transition-colors tracking-widest"
           >
             ← RETURN TO HUB
           </Link>
@@ -98,21 +98,21 @@ export default function HistoryPage() {
 
   // Derive dynamic stats from filtered data
   const anomalies = filteredChartData.filter(d => d.is_anomaly)
-  
+
   // Find "Major Event" (highest VBS_z or PVD_z)
-  const majorEvent = anomalies.length > 0 
+  const majorEvent = anomalies.length > 0
     ? anomalies.reduce((max, current) => {
-        const currentZ = Math.abs(current.VBS_z || 0) + Math.abs(current.VAI_z || 0) + Math.abs(current.PVD_z || 0)
-        const maxZ = Math.abs(max.VBS_z || 0) + Math.abs(max.VAI_z || 0) + Math.abs(max.PVD_z || 0)
-        return currentZ > maxZ ? current : max
-      })
+      const currentZ = Math.abs(current.VBS_z || 0) + Math.abs(current.VAI_z || 0) + Math.abs(current.PVD_z || 0)
+      const maxZ = Math.abs(max.VBS_z || 0) + Math.abs(max.VAI_z || 0) + Math.abs(max.PVD_z || 0)
+      return currentZ > maxZ ? current : max
+    })
     : null
 
   // Approximate historical trust (starts at 100, drops on anomalies)
   let currentTrust = 100
   const trustTimelineX: string[] = []
   const trustTimelineY: number[] = []
-  
+
   filteredChartData.forEach(d => {
     trustTimelineX.push(d.date)
     if (d.is_anomaly) {
@@ -131,18 +131,18 @@ export default function HistoryPage() {
         {/* TopAppBar */}
         <header className="sticky top-0 z-50 flex justify-between items-center px-8 h-16 bg-[#0A0A0A]/80 backdrop-blur-xl border-b border-white/10">
           <div className="flex items-center gap-8">
-            <Link to="/" className="text-xl font-black tracking-tighter text-cyan-500">GHOSTRADE</Link>
+            <Link to="/" className="text-xl font-black tracking-tighter text-white-500">GHOSTRADE</Link>
             <nav className="hidden md:flex gap-6">
               <Link to={`/dashboard/${ticker || 'TSLA'}`} className="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors">Dashboard</Link>
-              <Link to={`/history/${ticker || 'TSLA'}`} className="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-cyan-400 border-b-2 border-cyan-500 pb-1">History</Link>
+              <Link to={`/history/${ticker || 'TSLA'}`} className="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-white-400 border-b-2 border-white-500 pb-1">History</Link>
             </nav>
           </div>
-          
+
           <div className="flex items-center gap-6">
             <form onSubmit={handleSearch} className="hidden lg:flex items-center bg-surface-container-low border border-white/5 px-3 py-1.5 rounded-lg">
               <span className="material-symbols-outlined text-neutral-500 text-sm">search</span>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 className="bg-transparent border-none focus:ring-0 text-xs font-data-mono w-48 placeholder:text-neutral-600 outline-none ml-2"
                 placeholder="Search NVDA, AAPL, BTC..."
                 value={searchQuery}
@@ -167,14 +167,14 @@ export default function HistoryPage() {
               <h1 className="text-display-lg font-display-lg text-on-background mb-2">Historical Analysis: {ticker?.toUpperCase()}</h1>
               <div className="flex items-center gap-4 text-data-mono">
                 <span className="text-neutral-500 uppercase">Analysis Window:</span>
-                <span className="text-cyan-400">{selectedRange}</span>
+                <span className="text-white-400">{selectedRange}</span>
               </div>
             </div>
-            
+
             <div className="relative">
-              <button 
+              <button
                 onClick={() => setIsRangeOpen(!isRangeOpen)}
-                className="flex items-center gap-2 px-4 py-2 border border-white/10 hover:border-cyan-500/50 rounded hover:bg-cyan-500/10 transition-all font-data-mono text-xs"
+                className="flex items-center gap-2 px-4 py-2 border border-white/10 hover:border-white-500/50 rounded hover:bg-white-500/10 transition-all font-data-mono text-xs"
               >
                 <span className="material-symbols-outlined text-sm">date_range</span>
                 SELECT RANGE
@@ -185,7 +185,7 @@ export default function HistoryPage() {
                     <button
                       key={range}
                       onClick={() => { setSelectedRange(range); setIsRangeOpen(false) }}
-                      className="block w-full text-left px-4 py-3 text-xs font-data-mono hover:bg-cyan-500/10 text-neutral-300 hover:text-cyan-400 transition-colors border-b border-white/5 last:border-0"
+                      className="block w-full text-left px-4 py-3 text-xs font-data-mono hover:bg-white-500/10 text-neutral-300 hover:text-white-400 transition-colors border-b border-white/5 last:border-0"
                     >
                       {range}
                     </button>
@@ -229,7 +229,7 @@ export default function HistoryPage() {
                 </div>
                 {majorEvent && <div className="px-3 py-1 bg-error/20 text-error rounded font-label-caps text-[10px]">ANOMALY FLAG</div>}
               </div>
-              
+
               {majorEvent ? (
                 <>
                   <div className="grid grid-cols-2 gap-6 mb-6">
@@ -252,47 +252,47 @@ export default function HistoryPage() {
                 </p>
               )}
             </div>
-            
+
             <div className="glass-panel p-8 rounded-xl">
-               <h3 className="font-heading-md text-lg mb-6">Historical Trust Timeline</h3>
-               <div className="h-48 w-full">
-                  <Plot
-                    data={[
-                      {
-                        x: trustTimelineX,
-                        y: trustTimelineY,
-                        type: 'scatter',
-                        mode: 'lines',
-                        name: 'Trust Score',
-                        line: { color: '#4edea3', width: 2, shape: 'spline' },
-                        fill: 'tozeroy',
-                        fillcolor: 'rgba(78, 222, 163, 0.1)'
-                      }
-                    ]}
-                    layout={{
-                      autosize: true,
-                      margin: { t: 10, b: 30, l: 30, r: 10 },
-                      paper_bgcolor: 'rgba(0,0,0,0)',
-                      plot_bgcolor: 'rgba(0,0,0,0)',
-                      font: { color: '#e5e2e1', family: 'Space Grotesk' },
-                      xaxis: { showgrid: true, gridcolor: 'rgba(255,255,255,0.05)', color: '#869397' },
-                      yaxis: { showgrid: true, gridcolor: 'rgba(255,255,255,0.05)', color: '#869397', range: [0, 100] },
-                      hovermode: 'x unified',
-                      showlegend: false
-                    }}
-                    useResizeHandler={true}
-                    style={{ width: '100%', height: '100%' }}
-                    config={{ displayModeBar: false }}
-                  />
-               </div>
+              <h3 className="font-heading-md text-lg mb-6">Historical Trust Timeline</h3>
+              <div className="h-48 w-full">
+                <Plot
+                  data={[
+                    {
+                      x: trustTimelineX,
+                      y: trustTimelineY,
+                      type: 'scatter',
+                      mode: 'lines',
+                      name: 'Trust Score',
+                      line: { color: '#4edea3', width: 2, shape: 'spline' },
+                      fill: 'tozeroy',
+                      fillcolor: 'rgba(78, 222, 163, 0.1)'
+                    }
+                  ]}
+                  layout={{
+                    autosize: true,
+                    margin: { t: 10, b: 30, l: 30, r: 10 },
+                    paper_bgcolor: 'rgba(0,0,0,0)',
+                    plot_bgcolor: 'rgba(0,0,0,0)',
+                    font: { color: '#e5e2e1', family: 'Space Grotesk' },
+                    xaxis: { showgrid: true, gridcolor: 'rgba(255,255,255,0.05)', color: '#869397' },
+                    yaxis: { showgrid: true, gridcolor: 'rgba(255,255,255,0.05)', color: '#869397', range: [0, 100] },
+                    hovermode: 'x unified',
+                    showlegend: false
+                  }}
+                  useResizeHandler={true}
+                  style={{ width: '100%', height: '100%' }}
+                  config={{ displayModeBar: false }}
+                />
+              </div>
             </div>
           </div>
-          
+
           {/* Event Log Table */}
           <div className="glass-panel rounded-xl overflow-hidden">
             <div className="p-6 border-b border-white/5 flex justify-between items-center">
               <h3 className="font-heading-md text-lg">Detailed Event Log</h3>
-              <button className="text-cyan-400 text-xs font-data-mono hover:underline">EXPORT CSV</button>
+              <button className="text-white-400 text-xs font-data-mono hover:underline">EXPORT CSV</button>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-left font-data-mono text-sm">
@@ -312,7 +312,7 @@ export default function HistoryPage() {
                     let sevClass = 'bg-secondary/20 text-secondary'
                     if (maxZ > 3) { severity = 'CRITICAL'; sevClass = 'bg-error/20 text-error' }
                     else if (maxZ > 2) { severity = 'WARNING'; sevClass = 'bg-[#f0c040]/20 text-[#f0c040]' }
-                    
+
                     return (
                       <tr key={i} className="hover:bg-white/5 transition-colors">
                         <td className="p-4 text-neutral-300">{a.date}</td>
@@ -333,7 +333,7 @@ export default function HistoryPage() {
               </table>
             </div>
           </div>
-          
+
         </main>
       </div>
     </div>

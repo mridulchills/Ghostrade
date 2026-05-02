@@ -3,8 +3,8 @@ import { SignInButton, SignUpButton } from '@clerk/react'
 
 const BottomGradient = () => (
   <>
-    <span className="absolute inset-x-0 -bottom-px block h-px w-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100" />
-    <span className="absolute inset-x-10 -bottom-px mx-auto block h-px w-1/2 bg-gradient-to-r from-transparent via-cyan-300 to-transparent opacity-0 blur-sm transition duration-500 group-hover/btn:opacity-100" />
+    <span className="absolute inset-x-0 -bottom-px block h-px w-full bg-gradient-to-r from-transparent via-white-500 to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100" />
+    <span className="absolute inset-x-10 -bottom-px mx-auto block h-px w-1/2 bg-gradient-to-r from-transparent via-white-300 to-transparent opacity-0 blur-sm transition duration-500 group-hover/btn:opacity-100" />
   </>
 )
 
@@ -17,15 +17,15 @@ export default function SignInGate() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#4cd7f6] animate-pulse" />
-            <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-500">
+            <div className="w-2 h-2 rounded-full bg-white-400 shadow-[0_0_8px_#4cd7f6] animate-pulse" />
+            <span className="text-[10px] uppercase tracking-widest text-white-500">
               INTEGRITY ENGINE // RESTRICTED
             </span>
           </div>
           <h2 className="text-2xl font-bold text-white tracking-tight mb-2">
             Access Required
           </h2>
-          <p className="text-sm text-neutral-500 font-mono leading-relaxed">
+          <p className="text-sm text-neutral-500 leading-relaxed">
             Authenticate to access real-time market integrity analysis and anomaly detection.
           </p>
         </div>
@@ -38,7 +38,7 @@ export default function SignInGate() {
           <SignInButton mode="modal">
             <button
               type="button"
-              className="group/btn relative flex h-11 w-full items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 font-semibold text-sm text-black tracking-widest shadow-[0px_1px_0px_0px_rgba(255,255,255,0.2)_inset] hover:from-cyan-400 hover:to-cyan-500 transition-all duration-200 active:scale-[0.98]"
+              className="group/btn relative flex h-11 w-full items-center justify-center rounded-lg bg-gradient-to-br from-white-500 to-white-600 font-semibold text-sm text-black tracking-widest shadow-[0px_1px_0px_0px_rgba(255,255,255,0.2)_inset] hover:from-white-400 hover:to-white-500 transition-all duration-200 active:scale-[0.98]"
             >
               SIGN IN
               <BottomGradient />
@@ -61,10 +61,10 @@ export default function SignInGate() {
 
         {/* Footer */}
         <div className="flex items-center justify-between">
-          <a href="/" className="text-[11px] text-neutral-600 font-mono hover:text-neutral-300 transition-colors">
+          <a href="/" className="text-[11px] text-neutral-600 hover:text-neutral-300 transition-colors">
             ← RETURN TO HUB
           </a>
-          <span className="text-[10px] text-neutral-700 font-mono uppercase tracking-widest">V2.04</span>
+          <span className="text-[10px] text-neutral-700 uppercase tracking-widest">V2.04</span>
         </div>
       </div>
     </div>

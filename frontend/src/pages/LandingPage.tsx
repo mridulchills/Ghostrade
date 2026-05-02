@@ -4,19 +4,33 @@ import { Show, UserButton } from '@clerk/react'
 import LiquidLoader from '../components/LiquidLoader'
 import ColourfulText from '../components/ui/colourful-text'
 import { BackgroundLines } from '../components/ui/background-lines'
+import { PlaceholdersAndVanishInput } from '../components/ui/placeholders-and-vanish-input'
 
 export default function LandingPage() {
   const [ticker, setTicker] = useState('')
   const [isIntroLoading, setIsIntroLoading] = useState(true)
   const navigate = useNavigate()
 
+  const placeholders = [
+    "Enter Ticker (e.g. NVDA)",
+    "Search Bitcoin (BTC)",
+    "Audit Tesla (TSLA)",
+    "Analyze Apple (AAPL)",
+    "Scan S&P 500 (SPY)",
+    "Check Ethereum (ETH)",
+    "Monitor Microsoft (MSFT)"
+  ]
+
   useEffect(() => {
     const timer = setTimeout(() => setIsIntroLoading(false), 3000)
     return () => clearTimeout(timer)
   }, [])
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTicker(e.target.value)
+  }
+
+  const handleInputSubmit = (_e: React.FormEvent<HTMLFormElement>) => {
     if (ticker.trim()) {
       navigate(`/dashboard/${ticker.trim().toUpperCase()}`)
     }
@@ -57,7 +71,7 @@ export default function LandingPage() {
       <main className="relative min-h-[calc(100vh-64px)] overflow-hidden">
         <BackgroundLines className="flex flex-col items-center w-full pb-24 pt-xl">
           <div className="relative z-10 w-full max-w-7xl px-margin flex flex-col items-center text-center">
-            
+
             {/* Branding & Headline */}
             <div className="mb-lg mt-8">
               <div className="inline-flex items-center gap-2 px-3 py-1 mb-md border border-primary/20 rounded-full bg-primary/5">
@@ -78,24 +92,13 @@ export default function LandingPage() {
             </div>
 
             {/* Search Bar Terminal */}
-            <form onSubmit={handleSubmit} className="w-full max-w-2xl mb-lg group">
-              <div className="glass-surface p-base rounded-xl transition-all duration-500 glow-border">
-                <div className="flex items-center gap-sm px-md py-sm bg-black/40 rounded-lg">
-                  <span className="material-symbols-outlined text-primary shrink-0">search</span>
-                  <input
-                    className="w-full bg-transparent border-none focus:ring-0 text-white font-data-mono text-body-main placeholder:text-neutral-500 outline-none uppercase"
-                    placeholder="Enter Ticker (e.g., NVDA, BTC, SPY)"
-                    type="text"
-                    value={ticker}
-                    onChange={(e) => setTicker(e.target.value.toUpperCase())}
-                    autoFocus
-                  />
-                  <button type="submit" className="hidden sm:flex items-center gap-1 font-label-caps text-[10px] text-black bg-primary px-3 py-1.5 rounded hover:bg-primary/90 font-bold transition-all shrink-0">
-                    AUDIT
-                  </button>
-                </div>
-              </div>
-            </form>
+            <div className="w-full max-w-2xl mb-lg group relative z-50">
+              <PlaceholdersAndVanishInput
+                placeholders={placeholders}
+                onChange={handleInputChange}
+                onSubmit={handleInputSubmit}
+              />
+            </div>
 
             {/* Signal Keys */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-gutter w-full max-w-4xl mb-xl">
@@ -117,7 +120,7 @@ export default function LandingPage() {
           </div>
         </BackgroundLines>
       </main>
-      
+
       {/* Footer Stats Ticker */}
       <footer className="fixed bottom-0 w-full h-10 glass-surface border-t-0 flex items-center px-8 z-50">
         <div className="flex items-center gap-margin overflow-hidden whitespace-nowrap">

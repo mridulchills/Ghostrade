@@ -119,7 +119,7 @@ LIP_z = zscore(LIP)
 4. Days are labeled as anomalous (`is_anomaly = True`) where the IsolationForest predicts -1.
 5. The Trust Score engine combines the peak anomaly score with Z-score magnitudes over a rolling 5-day window, then applies a time-decay penalty for anomalous days in the trailing 30 days.
 
----
+
 
 ## Trust Score and Classification
 

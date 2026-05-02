@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Ghostrade TV Sync",
+  "version": "1.0.0",
+  "description": "Ghostrade Companion for TradingView - Real-time integrity analysis.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.ico"
+  },
+  "icons": {
+    "48": "icon.ico",
+    "128": "icon.ico"
+  },
+  "permissions": ["storage"],
+  "host_permissions": [
+    "*://localhost/*",
+    "*://*.tradingview.com/*",
+    "https://ghostrade-v2.onrender.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*.tradingview.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}

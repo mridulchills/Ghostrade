@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    :root {
+      --bg: #0A0A0A;
+      --surface: #131313;
+      --primary: #4cd7f6;
+      --secondary: #4edea3;
+      --error: #ffb4ab;
+      --warning: #f0c040;
+      --text: #e5e2e1;
+      --text-dim: #869397;
+    }
+    body {
+      width: 320px;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      margin: 0;
+      padding: 16px;
+      overflow: hidden;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 10px;
+    }
+    .logo {
+      font-weight: 900;
+      color: var(--primary);
+      letter-spacing: -1px;
+    }
+    .ticker-display {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+    .status-stable { background: rgba(78, 222, 163, 0.1); color: var(--secondary); border: 1px solid rgba(78, 222, 163, 0.2); }
+    .status-suspicious { background: rgba(240, 192, 64, 0.1); color: var(--warning); border: 1px solid rgba(240, 192, 64, 0.2); }
+    .status-ghost { background: rgba(255, 180, 171, 0.1); color: var(--error); border: 1px solid rgba(255, 180, 171, 0.2); }
+
+    .score-container {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .score-value {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .score-label {
+      font-size: 10px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+
+    .params-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .param-card {
+      background: var(--surface);
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .param-label {
+      font-size: 9px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .param-value {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .loader {
+      display: none;
+      text-align: center;
+      padding: 40px 0;
+    }
+    .content { display: block; }
+    
+    .error-msg {
+      color: var(--error);
+      font-size: 12px;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">GHOSTRADE</div>
+    <div id="active-ticker" style="font-size: 10px; color: var(--text-dim)">SYNCED</div>
+  </div>
+
+  <div id="loader" class="loader">
+    <div style="color: var(--primary); font-size: 12px;">ANALYZING...</div>
+  </div>
+
+  <div id="content" class="content">
+    <div class="ticker-display" id="ticker-name">TSLA</div>
+    <div id="status-badge" class="status-badge status-stable">STABLE</div>
+
+    <div class="score-container">
+      <div class="score-value" id="trust-score">--</div>
+      <div class="score-label">TRUST SCORE</div>
+    </div>
+
+    <div class="params-grid">
+      <div class="param-card">
+        <div class="param-label">VAI Engine</div>
+        <div class="param-value" id="val-vai">--</div>
+      </div>
+      <div class="param-card">
+        <div class="param-label">VBS Flow</div>
+        <div class="param-value" id="val-vbs">--</div>
+      </div>
+      <div class="param-card">
+        <div class="param-label">PVD Drift</div>
+        <div class="param-value" id="val-pvd">--</div>
+      </div>
+      <div class="param-card">
+        <div class="param-label">LIP Analysis</div>
+        <div class="param-value" id="val-lip">--</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="error" class="error-msg">Failed to fetch analysis</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

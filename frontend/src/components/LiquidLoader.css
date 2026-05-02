@@ -1,0 +1,80 @@
+/* ──────────────────────────────────────────────────────────
+   LiquidLoader.css
+   True SVG clipPath liquid-fill loader
+   ────────────────────────────────────────────────────────── */
+
+/* Wrapper keeps the SVG at the requested pixel size */
+.ll-wrapper {
+  display: inline-block;
+  position: relative;
+  /* Soft outer glow */
+  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.4))
+          drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
+}
+
+.ll-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* ── Outline layer: the "empty container" ghost stroke ── */
+.ll-outline {
+  /* The dim stroke just helps the eye read the silhouette before liquid arrives */
+  opacity: 0.6;
+  animation: ll-outline-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes ll-outline-pulse {
+  0%, 100% { opacity: 0.45; }
+  50%       { opacity: 0.75; }
+}
+
+/* ── Liquid body: solid rectangle that climbs up inside the clip ── */
+
+.ll-liquid-auto {
+  /*
+    Start fully below the viewBox (translateY = 330px = full vbH).
+    Rise to -5px (just slightly above top) over 3 s, hold briefly, then reset.
+    The clip path ensures nothing escapes the logo boundary.
+  */
+  animation: ll-rise 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}
+
+@keyframes ll-rise {
+  0%   { transform: translateY(330px); }
+  60%  { transform: translateY(-5px);  }
+  85%  { transform: translateY(-5px);  }
+  100% { transform: translateY(330px); }
+}
+
+/* ── Wave paths: ride on top of the liquid body ── */
+
+.ll-wave-auto {
+  animation: ll-rise 3s cubic-bezier(0.4, 0, 0.2, 1) infinite,
+             ll-scroll 2.2s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}
+
+.ll-wave-back.ll-wave-auto {
+  animation: ll-rise 3s cubic-bezier(0.4, 0, 0.2, 1) infinite,
+             ll-scroll-back 3.1s linear infinite;
+}
+
+/* Horizontal scroll to create the wave-surface motion */
+@keyframes ll-scroll {
+  0%   { transform: translateY(330px) translateX(0);    }
+  60%  { transform: translateY(-5px)  translateX(-401px); }
+  85%  { transform: translateY(-5px)  translateX(-401px); }
+  100% { transform: translateY(330px) translateX(0);    }
+}
+
+@keyframes ll-scroll-back {
+  0%   { transform: translateY(330px) translateX(-200px);  }
+  60%  { transform: translateY(-5px)  translateX(-601px);  }
+  85%  { transform: translateY(-5px)  translateX(-601px);  }
+  100% { transform: translateY(330px) translateX(-200px);  }
+}

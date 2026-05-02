@@ -1,0 +1,2145 @@
+for VAI:
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#06b6d4",
+                    "surface-container": "#201f1f",
+                    "secondary-fixed-dim": "#4edea3",
+                    "tertiary-fixed": "#ffdad7",
+                    "tertiary-container": "#ff817a",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-secondary-container": "#00311f",
+                    "on-primary-fixed": "#001f26",
+                    "secondary-container": "#00a572",
+                    "inverse-primary": "#00687a",
+                    "error-container": "#93000a",
+                    "secondary-fixed": "#6ffbbe",
+                    "surface-container-low": "#1c1b1b",
+                    "surface-tint": "#4cd7f6",
+                    "on-tertiary": "#68000a",
+                    "outline-variant": "#3d494c",
+                    "on-tertiary-fixed": "#410004",
+                    "surface-container-highest": "#353534",
+                    "on-tertiary-container": "#7e000f",
+                    "surface-dim": "#131313",
+                    "outline": "#869397",
+                    "tertiary-fixed-dim": "#ffb3ad",
+                    "primary-fixed-dim": "#4cd7f6",
+                    "on-primary": "#003640",
+                    "on-primary-fixed-variant": "#004e5c",
+                    "error": "#ffb4ab",
+                    "on-secondary": "#003824",
+                    "surface": "#131313",
+                    "surface-variant": "#353534",
+                    "on-primary-container": "#00424f",
+                    "on-secondary-fixed-variant": "#005236",
+                    "primary": "#4cd7f6",
+                    "on-surface": "#e5e2e1",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed-variant": "#930013",
+                    "background": "#131313",
+                    "on-surface-variant": "#bcc9cd",
+                    "on-background": "#e5e2e1",
+                    "primary-fixed": "#acedff",
+                    "secondary": "#4edea3",
+                    "inverse-surface": "#e5e2e1",
+                    "inverse-on-surface": "#313030",
+                    "surface-bright": "#3a3939",
+                    "surface-container-high": "#2a2a2a",
+                    "on-secondary-fixed": "#002113",
+                    "tertiary": "#ffb3ad",
+                    "on-error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xl": "64px",
+                    "margin": "32px",
+                    "md": "24px",
+                    "lg": "40px",
+                    "xs": "8px",
+                    "base": "4px",
+                    "gutter": "20px",
+                    "sm": "16px"
+            },
+            "fontFamily": {
+                    "body-main": ["Inter"],
+                    "data-mono": ["Space Grotesk"],
+                    "display-lg": ["Inter"],
+                    "heading-md": ["Inter"],
+                    "label-caps": ["Space Grotesk"]
+            },
+            "fontSize": {
+                    "body-main": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "data-mono": ["14px", {"lineHeight": "1.5", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "heading-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .glass-panel {
+            background: rgba(23, 23, 23, 0.8);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0A0A0A; }
+        ::-webkit-scrollbar-thumb { background: #353534; }
+        ::-webkit-scrollbar-thumb:hover { background: #4cd7f6; }
+    </style>
+</head>
+<body class="bg-background font-body-main text-on-background overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="sticky top-0 flex justify-between items-center w-full px-8 h-16 z-50 dark:bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-none">
+<div class="text-cyan-500 font-black tracking-tighter text-2xl">GHOSTRADE</div>
+<nav class="hidden md:flex gap-8 items-center h-full">
+<a class="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors" href="#">Dashboard</a>
+<a class="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-cyan-400 border-b-2 border-cyan-500 pb-2 active:scale-95 cursor-pointer" href="#">Signals</a>
+<a class="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors" href="#">History</a>
+<a class="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors" href="#">Watchlist</a>
+</nav>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-cyan-400 transition-all duration-300 cursor-pointer" data-icon="notifications_active">notifications_active</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-cyan-400 transition-all duration-300 cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] flex flex-col z-40 dark:bg-neutral-950 h-screen w-64 border-r border-white/5 shadow-2xl shadow-cyan-900/5">
+<div class="p-6 border-b border-white/5">
+<div class="flex items-center gap-3 mb-1">
+<div class="w-8 h-8 bg-surface-container-high rounded-full overflow-hidden flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="shield">shield</span>
+</div>
+<div>
+<h3 class="text-cyan-500 font-bold uppercase font-['Inter'] text-xs">INTEGRITY ENGINE</h3>
+<p class="text-[10px] text-neutral-500 tracking-widest">V2.04 ACTIVE</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 py-4">
+<a class="font-['Inter'] text-xs font-medium flex items-center gap-3 text-neutral-500 px-4 py-3 hover:bg-white/5 hover:text-neutral-200 transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="grid_view">grid_view</span>
+<span>Overview</span>
+</a>
+<a class="font-['Inter'] text-xs font-medium flex items-center gap-3 bg-cyan-500/10 text-cyan-400 border-r-2 border-cyan-500 px-4 py-3 active:bg-neutral-800 transition-all" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="psychology">psychology</span>
+<span>VAI Engine</span>
+</a>
+<a class="font-['Inter'] text-xs font-medium flex items-center gap-3 text-neutral-500 px-4 py-3 hover:bg-white/5 hover:text-neutral-200 transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="waves">waves</span>
+<span>VBS Flow</span>
+</a>
+<a class="font-['Inter'] text-xs font-medium flex items-center gap-3 text-neutral-500 px-4 py-3 hover:bg-white/5 hover:text-neutral-200 transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="security">security</span>
+<span>LIP Analysis</span>
+</a>
+<a class="font-['Inter'] text-xs font-medium flex items-center gap-3 text-neutral-500 px-4 py-3 hover:bg-white/5 hover:text-neutral-200 transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="settings">settings</span>
+<span>Terminal Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-white/5">
+<button class="w-full bg-cyan-500 text-black font-bold py-2 px-4 text-xs tracking-tighter uppercase rounded hover:bg-cyan-400 transition-all active:scale-95">
+                RUN DIAGNOSTICS
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 p-margin min-h-screen bg-surface-container-lowest">
+<!-- Header Section -->
+<div class="flex flex-col gap-xs mb-lg">
+<div class="flex items-center gap-sm">
+<span class="bg-primary-container/20 text-primary px-3 py-1 rounded-full text-[10px] font-bold tracking-widest border border-primary/30 uppercase">Signal Deep-Dive</span>
+<span class="text-neutral-500 text-xs font-data-mono">UUID: 8f2-x91-v004</span>
+</div>
+<h1 class="text-display-lg font-display-lg text-on-background">VAI System Analysis</h1>
+<p class="text-on-surface-variant max-w-2xl text-body-main">Detailed forensic breakdown of cross-exchange signal deviations. Reviewing algorithmic integrity and real-time anomaly scorecards.</p>
+</div>
+<!-- Signal Matrix (Bento Grid) -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- VAI (Volume Anomaly) -->
+<div class="col-span-12 lg:col-span-8 glass-panel p-md rounded-xl border border-white/5 group hover:border-primary/30 transition-all">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h2 class="text-heading-md font-heading-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+                            VAI Engine Scorecard
+                        </h2>
+<p class="text-on-surface-variant text-xs font-data-mono mt-1">Volume Anomaly Index: Critical Threshold Detection</p>
+</div>
+<div class="text-right">
+<span class="text-secondary text-2xl font-data-mono">4.82σ</span>
+<p class="text-[10px] text-neutral-500 uppercase tracking-widest">Current Deviation</p>
+</div>
+</div>
+<!-- Custom Bar Chart Visualization -->
+<div class="h-64 flex items-end gap-2 w-full mt-lg">
+<div class="flex-1 bg-surface-container-high relative group/bar hover:bg-primary/20 transition-all rounded-t-sm" style="height: 35%">
+<div class="absolute -top-6 left-0 right-0 text-center text-[10px] font-data-mono text-neutral-500 opacity-0 group-hover/bar:opacity-100 transition-opacity">1.2σ</div>
+</div>
+<div class="flex-1 bg-surface-container-high relative group/bar hover:bg-primary/20 transition-all rounded-t-sm" style="height: 42%">
+<div class="absolute -top-6 left-0 right-0 text-center text-[10px] font-data-mono text-neutral-500 opacity-0 group-hover/bar:opacity-100 transition-opacity">1.8σ</div>
+</div>
+<div class="flex-1 bg-primary relative group/bar rounded-t-sm shadow-[0_0_15px_rgba(76,215,246,0.3)]" style="height: 94%">
+<div class="absolute -top-6 left-0 right-0 text-center text-[10px] font-data-mono text-primary">4.8σ</div>
+</div>
+<div class="flex-1 bg-surface-container-high relative group/bar hover:bg-primary/20 transition-all rounded-t-sm" style="height: 55%"></div>
+<div class="flex-1 bg-surface-container-high relative group/bar hover:bg-primary/20 transition-all rounded-t-sm" style="height: 28%"></div>
+<div class="flex-1 bg-surface-container-high relative group/bar hover:bg-primary/20 transition-all rounded-t-sm" style="height: 62%"></div>
+<div class="flex-1 bg-surface-container-high relative group/bar hover:bg-primary/20 transition-all rounded-t-sm" style="height: 48%"></div>
+<div class="flex-1 bg-surface-container-high relative group/bar hover:bg-primary/20 transition-all rounded-t-sm" style="height: 33%"></div>
+<div class="flex-1 bg-surface-container-high relative group/bar hover:bg-primary/20 transition-all rounded-t-sm" style="height: 71%"></div>
+<div class="flex-1 bg-surface-container-high relative group/bar hover:bg-primary/20 transition-all rounded-t-sm" style="height: 82%"></div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] text-neutral-500 font-label-caps border-t border-white/5 pt-4">
+<span>T-90 SEC</span>
+<span>T-60 SEC</span>
+<span class="text-primary">ANOMALY DETECTED</span>
+<span>T-30 SEC</span>
+<span>LIVE</span>
+</div>
+</div>
+<!-- LIP (Liquidity Instability) -->
+<div class="col-span-12 lg:col-span-4 glass-panel p-md rounded-xl border border-white/5 flex flex-col">
+<h3 class="text-label-caps font-label-caps text-on-surface-variant mb-md">LIP INSTABILITY (Z-SCORE)</h3>
+<div class="flex-1 flex items-center justify-center relative">
+<!-- Gauge Visualization -->
+<svg class="w-48 h-48 rotate-[-90deg]" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="#2a2a2a" stroke-width="8"></circle>
+<circle cx="50" cy="50" fill="none" r="45" stroke="url(#cyanGradient)" stroke-dasharray="212" stroke-dashoffset="70" stroke-linecap="round" stroke-width="8"></circle>
+<defs>
+<lineargradient id="cyanGradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#06b6d4"></stop>
+<stop offset="100%" stop-color="#4edea3"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="text-display-lg font-data-mono text-secondary">74</span>
+<span class="text-[10px] text-neutral-500 tracking-widest uppercase">Stability Index</span>
+</div>
+</div>
+<div class="mt-md space-y-3">
+<div class="flex justify-between text-xs">
+<span class="text-neutral-500">Spread Variance</span>
+<span class="font-data-mono">+12.4%</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-neutral-500">Order Book Depth</span>
+<span class="font-data-mono text-error">-8.1%</span>
+</div>
+</div>
+</div>
+<!-- VBS (Volatility Burst) -->
+<div class="col-span-12 lg:col-span-6 glass-panel p-md rounded-xl border border-white/5">
+<div class="flex items-center gap-xs mb-md">
+<span class="material-symbols-outlined text-tertiary" data-icon="bolt">bolt</span>
+<h3 class="text-label-caps font-label-caps text-on-surface-variant">VBS FLOW ANALYSIS</h3>
+</div>
+<div class="space-y-4">
+<div class="group">
+<div class="flex justify-between text-[11px] mb-1">
+<span class="text-on-surface">Micro-Burst Frequency</span>
+<span class="text-primary font-data-mono">HIGH</span>
+</div>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[88%] shadow-[0_0_8px_rgba(76,215,246,0.5)]"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between text-[11px] mb-1">
+<span class="text-on-surface">Delta Skewness</span>
+<span class="text-on-surface-variant font-data-mono">STABLE</span>
+</div>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-surface-container-highest w-[32%]"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between text-[11px] mb-1">
+<span class="text-on-surface">Execution Latency Sensitivity</span>
+<span class="text-secondary font-data-mono">OPTIMAL</span>
+</div>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[15%] shadow-[0_0_8px_rgba(78,222,163,0.5)]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- PVD (Price-Volume Divergence) -->
+<div class="col-span-12 lg:col-span-6 glass-panel p-md rounded-xl border border-white/5">
+<div class="flex items-center gap-xs mb-md">
+<span class="material-symbols-outlined text-primary" data-icon="difference">difference</span>
+<h3 class="text-label-caps font-label-caps text-on-surface-variant">PVD DELTA CORRELATION</h3>
+</div>
+<div class="flex items-center justify-between gap-lg h-32">
+<div class="flex-1 relative h-full">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent"></div>
+<div class="h-full w-full border-b border-l border-white/10 flex items-center justify-center">
+<!-- Scatter Plot Mockup -->
+<div class="grid grid-cols-6 grid-rows-4 w-full h-full p-2 gap-2">
+<div class="w-1 h-1 bg-primary/20 rounded-full"></div>
+<div class="w-1.5 h-1.5 bg-primary/40 rounded-full col-start-3 row-start-2"></div>
+<div class="w-2 h-2 bg-primary shadow-[0_0_5px_cyan] rounded-full col-start-5 row-start-1"></div>
+<div class="w-1 h-1 bg-primary/20 rounded-full col-start-2 row-start-4"></div>
+<div class="w-1 h-1 bg-primary/30 rounded-full col-start-6 row-start-3"></div>
+</div>
+</div>
+</div>
+<div class="w-32 flex flex-col justify-center">
+<div class="text-display-lg text-primary font-data-mono leading-none">0.92</div>
+<div class="text-[10px] text-neutral-500 uppercase mt-2">Pearson Coefficient</div>
+</div>
+</div>
+</div>
+<!-- Methodology Snippet -->
+<div class="col-span-12 glass-panel p-md rounded-xl border border-white/5 overflow-hidden relative">
+<div class="absolute top-0 right-0 p-gutter opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-9xl" data-icon="terminal">terminal</span>
+</div>
+<div class="max-w-4xl relative z-10">
+<h3 class="text-heading-md font-heading-md text-on-background mb-xs">Anomaly Detection Pipeline</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md mt-md">
+<div class="space-y-2">
+<span class="text-primary font-data-mono text-xs">STEP 01 // INGESTION</span>
+<p class="text-on-surface-variant text-xs leading-relaxed">Raw tick-data normalization across 14 global exchanges. High-frequency filtering of non-impact ghost orders.</p>
+</div>
+<div class="space-y-2">
+<span class="text-primary font-data-mono text-xs">STEP 02 // TRANSFORM</span>
+<p class="text-on-surface-variant text-xs leading-relaxed">Z-score calculation against 30-day rolling mean. Signal vector mapping for VAI, VBS, and PVD modules.</p>
+</div>
+<div class="space-y-2">
+<span class="text-primary font-data-mono text-xs">STEP 03 // CLASSIFY</span>
+<p class="text-on-surface-variant text-xs leading-relaxed">Neural clustering of deviations. Triggering Integrity Alerts when σ exceeds 3.5 globally.</p>
+</div>
+</div>
+<div class="mt-lg p-xs bg-black/40 rounded border border-white/5 font-data-mono text-[11px] text-cyan-400/80 overflow-x-auto whitespace-nowrap">
+<span class="text-neutral-500">SYSTEM:</span> [0.44s] SIGNAL_VECTOR.PUSH(id="VAI_992", sigma=4.82, weight=0.94) -&gt; STATUS: PENDING_AUDIT
+                    </div>
+</div>
+</div>
+<!-- Integrity Health Gauge (Visual Decorative Section) -->
+<div class="col-span-12 lg:col-span-12 h-64 rounded-xl relative overflow-hidden flex items-center p-xl">
+<img class="absolute inset-0 w-full h-full object-cover opacity-20" data-alt="abstract digital data stream with grid patterns and blue neon lights in a futuristic cyber surveillance aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACsgmmVg0RNpDNFMSNXhwYELkFt3zzXrgjRm2rODf5vt4lGPWxV67EdkomKBQAo43YknIYb2cwlkDCBbR5--vAOcCrTExAhU6rVQTWJ0zzfLGC6ZTUcwgcfiQs9rESajUmTqS_PjCdZiu929xDn2ch_Ms3P5c3_95p9BYTu5zEiDHkt4nNs1twyy1aoGT8IC4-TfacRRqAIuqKyIHCZApgPGVdeMRTitBhC3cnUcF8cwfKKXqEciNQSTlZQzYhAHgHBCKeOBmszLL1"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background"></div>
+<div class="relative z-10 flex flex-col gap-xs">
+<h4 class="text-display-lg text-primary font-data-mono">99.8%</h4>
+<p class="text-label-caps text-on-surface-variant">CURRENT NETWORK INTEGRITY STABILITY</p>
+<div class="flex items-center gap-base mt-md">
+<div class="w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
+<span class="text-[10px] text-secondary font-bold tracking-widest uppercase">Operational - No Ghost Trades Detected</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual FAB (Hidden on Deep-Dive) -->
+<!-- Suppression rule applied: Suppression for Details/Transactional/Deep-dive screens -->
+</body></html>
+
+
+2nd snippet:
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GHOSTRADE | Integrity Engine</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "#06b6d4",
+                      "surface-container": "#201f1f",
+                      "secondary-fixed-dim": "#4edea3",
+                      "tertiary-fixed": "#ffdad7",
+                      "tertiary-container": "#ff817a",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-secondary-container": "#00311f",
+                      "on-primary-fixed": "#001f26",
+                      "secondary-container": "#00a572",
+                      "inverse-primary": "#00687a",
+                      "error-container": "#93000a",
+                      "secondary-fixed": "#6ffbbe",
+                      "surface-container-low": "#1c1b1b",
+                      "surface-tint": "#4cd7f6",
+                      "on-tertiary": "#68000a",
+                      "outline-variant": "#3d494c",
+                      "on-tertiary-fixed": "#410004",
+                      "surface-container-highest": "#353534",
+                      "on-tertiary-container": "#7e000f",
+                      "surface-dim": "#131313",
+                      "outline": "#869397",
+                      "tertiary-fixed-dim": "#ffb3ad",
+                      "primary-fixed-dim": "#4cd7f6",
+                      "on-primary": "#003640",
+                      "on-primary-fixed-variant": "#004e5c",
+                      "error": "#ffb4ab",
+                      "on-secondary": "#003824",
+                      "surface": "#131313",
+                      "surface-variant": "#353534",
+                      "on-primary-container": "#00424f",
+                      "on-secondary-fixed-variant": "#005236",
+                      "primary": "#4cd7f6",
+                      "on-surface": "#e5e2e1",
+                      "on-error": "#690005",
+                      "on-tertiary-fixed-variant": "#930013",
+                      "background": "#131313",
+                      "on-surface-variant": "#bcc9cd",
+                      "on-background": "#e5e2e1",
+                      "primary-fixed": "#acedff",
+                      "secondary": "#4edea3",
+                      "inverse-surface": "#e5e2e1",
+                      "inverse-on-surface": "#313030",
+                      "surface-bright": "#3a3939",
+                      "surface-container-high": "#2a2a2a",
+                      "on-secondary-fixed": "#002113",
+                      "tertiary": "#ffb3ad",
+                      "on-error-container": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xl": "64px",
+                      "margin": "32px",
+                      "md": "24px",
+                      "lg": "40px",
+                      "xs": "8px",
+                      "base": "4px",
+                      "gutter": "20px",
+                      "sm": "16px"
+              },
+              "fontFamily": {
+                      "body-main": ["Inter"],
+                      "data-mono": ["Space Grotesk"],
+                      "display-lg": ["Inter"],
+                      "heading-md": ["Inter"],
+                      "label-caps": ["Space Grotesk"]
+              },
+              "fontSize": {
+                      "body-main": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                      "data-mono": ["14px", {"lineHeight": "1.5", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "heading-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(23, 23, 23, 0.8);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .crimson-glow {
+            box-shadow: 0 0 20px rgba(255, 129, 122, 0.15);
+            border: 1px solid #7e000f;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-main selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="sticky top-0 flex justify-between items-center w-full px-8 h-16 z-50 dark:bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-none">
+<div class="flex items-center gap-8">
+<span class="text-cyan-500 font-black tracking-tighter text-2xl">GHOSTRADE</span>
+<nav class="hidden md:flex gap-6 items-center h-full">
+<a class="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors" href="#">Dashboard</a>
+<a class="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-cyan-400 border-b-2 border-cyan-500 pb-2" href="#">Signals</a>
+<a class="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors" href="#">History</a>
+<a class="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors" href="#">Watchlist</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined text-neutral-400 hover:text-cyan-400 cursor-pointer transition-all duration-300">notifications_active</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-on-tertiary-container rounded-full ring-2 ring-black"></span>
+</div>
+<span class="material-symbols-outlined text-neutral-400 hover:text-cyan-400 cursor-pointer transition-all duration-300">account_circle</span>
+</div>
+</header>
+<div class="flex min-h-[calc(100vh-64px)]">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] flex flex-col z-40 dark:bg-neutral-950 w-64 border-r border-white/5 shadow-2xl shadow-cyan-900/5">
+<div class="p-6 flex flex-col gap-1 border-b border-white/5">
+<span class="text-cyan-500 font-bold uppercase text-xs">INTEGRITY ENGINE</span>
+<span class="font-data-mono text-[10px] text-neutral-500 tracking-widest">V2.04 ACTIVE</span>
+</div>
+<nav class="flex-1 py-4">
+<a class="flex items-center gap-3 text-neutral-500 px-6 py-3 hover:bg-white/5 font-['Inter'] text-xs font-medium transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">grid_view</span> Overview
+                </a>
+<a class="flex items-center gap-3 bg-cyan-500/10 text-cyan-400 border-r-2 border-cyan-500 px-6 py-3 font-['Inter'] text-xs font-medium" href="#">
+<span class="material-symbols-outlined text-sm">psychology</span> VAI Engine
+                </a>
+<a class="flex items-center gap-3 text-neutral-500 px-6 py-3 hover:bg-white/5 font-['Inter'] text-xs font-medium transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">waves</span> VBS Flow
+                </a>
+<a class="flex items-center gap-3 text-neutral-500 px-6 py-3 hover:bg-white/5 font-['Inter'] text-xs font-medium transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">security</span> LIP Analysis
+                </a>
+<a class="flex items-center gap-3 text-neutral-500 px-6 py-3 hover:bg-white/5 font-['Inter'] text-xs font-medium transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">settings</span> Terminal Settings
+                </a>
+</nav>
+<div class="p-4">
+<button class="w-full py-3 bg-primary-container text-on-primary-container font-label-caps text-[10px] rounded hover:opacity-90 active:scale-95 transition-all">
+                    RUN DIAGNOSTICS
+                </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-64 p-margin">
+<!-- Critical Alert Banner -->
+<div class="mb-gutter bg-on-tertiary-container/10 border border-on-tertiary-container p-sm rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-tertiary-container text-2xl" style="font-variation-settings: 'FILL' 1;">warning</span>
+<div>
+<h2 class="font-display-lg text-lg text-tertiary-container leading-none">GHOST TRADE DETECTED</h2>
+<p class="text-neutral-400 font-data-mono text-xs mt-1">ASSET: BTC-USD-PERP | LATENCY: 14ms</p>
+</div>
+</div>
+<div class="flex gap-xs">
+<span class="px-3 py-1 bg-on-tertiary-container text-white text-[10px] font-bold rounded">HIGH URGENCY</span>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Integrity Score Gauge -->
+<div class="col-span-12 md:col-span-4 glass-card p-md rounded-xl crimson-glow flex flex-col items-center justify-center text-center">
+<div class="relative w-48 h-48 mb-sm">
+<!-- SVG Gauge -->
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-highest" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-tertiary-container" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-dasharray="552.92" stroke-dashoffset="486.5" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-lg text-5xl text-tertiary-container">12</span>
+<span class="font-label-caps text-neutral-500">TRUST SCORE</span>
+</div>
+</div>
+<div class="w-full pt-sm border-t border-white/5">
+<div class="flex justify-between items-center mb-base">
+<span class="text-neutral-400 text-xs font-data-mono">SYSTEM HEALTH</span>
+<span class="text-tertiary-container text-xs font-data-mono uppercase">CRITICAL</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full w-[12%]"></div>
+</div>
+</div>
+</div>
+<!-- Price Chart Block -->
+<div class="col-span-12 md:col-span-8 glass-card p-md rounded-xl relative overflow-hidden">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-heading-md text-on-surface">PRICE PERFORMANCE</h3>
+<p class="text-neutral-500 font-data-mono text-xs">BTC/USD REAL-TIME STREAM</p>
+</div>
+<div class="text-right">
+<div class="text-2xl font-data-mono text-tertiary-container">$64,284.12</div>
+<div class="text-xs font-data-mono text-tertiary-container flex items-center justify-end gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +8.4% (GHOST SPIKE)
+                            </div>
+</div>
+</div>
+<!-- Chart Visualization -->
+<div class="h-64 relative flex items-end gap-1">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5 pointer-events-none"></div>
+<!-- Simplified Grid -->
+<div class="absolute inset-0 grid grid-rows-4 w-full h-full opacity-10">
+<div class="border-b border-white"></div>
+<div class="border-b border-white"></div>
+<div class="border-b border-white"></div>
+<div class="border-b border-white"></div>
+</div>
+<!-- Chart Line -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 200">
+<path class="text-tertiary-container" d="M0,180 L100,175 L200,182 L300,170 L400,175 L500,160 L600,170 L700,50 L800,20 L900,10 L1000,5" fill="none" stroke="currentColor" stroke-width="3"></path>
+<!-- Warning Overlay -->
+<rect class="text-tertiary-container/10" fill="currentColor" height="200" width="320" x="680" y="0"></rect>
+</svg>
+<!-- Detection Label -->
+<div class="absolute top-[20%] left-[72%] glass-card crimson-glow p-xs rounded text-[10px] font-data-mono text-tertiary-container">
+                            SUSPICIOUS VOLUME ANOMALY
+                        </div>
+</div>
+</div>
+<!-- Analysis Summary -->
+<div class="col-span-12 md:col-span-7 glass-card p-md rounded-xl">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-cyan-500">analytics</span>
+<h3 class="font-heading-md text-on-surface">ANOMALY EXPLAINER</h3>
+</div>
+<div class="space-y-md">
+<div class="p-sm bg-surface-container-low border-l-2 border-cyan-500">
+<p class="text-on-surface-variant font-body-main text-sm">
+<span class="text-cyan-400 font-bold">Extreme price-volume divergence (PVD) detected.</span> 
+                                Internal metrics confirm a <span class="text-tertiary-container font-bold">4.2 sigma deviation</span> in wash-trading patterns within the last 180 seconds.
+                            </p>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="p-sm glass-card rounded">
+<div class="text-[10px] text-neutral-500 font-label-caps mb-xs">WASH RATIO</div>
+<div class="text-lg font-data-mono text-on-surface">94.2%</div>
+</div>
+<div class="p-sm glass-card rounded">
+<div class="text-[10px] text-neutral-500 font-label-caps mb-xs">ORDER CANCEL RATE</div>
+<div class="text-lg font-data-mono text-on-surface">99.1%</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Integrity Log -->
+<div class="col-span-12 md:col-span-5 glass-card p-md rounded-xl">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-heading-md text-on-surface">INTEGRITY LOG</h3>
+<span class="text-[10px] font-data-mono text-neutral-500 animate-pulse">STREAMING LIVE</span>
+</div>
+<div class="space-y-xs h-48 overflow-y-auto pr-xs">
+<div class="flex justify-between items-center py-base border-b border-white/5">
+<span class="text-[11px] font-data-mono text-tertiary-container">14:22:11</span>
+<span class="text-[11px] font-data-mono text-on-surface-variant">Liquid Cluster Detected</span>
+<span class="text-[10px] font-label-caps px-2 py-0.5 bg-tertiary-container/20 text-tertiary-container rounded">FLAGGED</span>
+</div>
+<div class="flex justify-between items-center py-base border-b border-white/5">
+<span class="text-[11px] font-data-mono text-neutral-500">14:21:58</span>
+<span class="text-[11px] font-data-mono text-on-surface-variant">Orderbook Spoof Block (120 BTC)</span>
+<span class="text-[10px] font-label-caps px-2 py-0.5 bg-secondary-container/20 text-secondary-fixed rounded">BLOCKED</span>
+</div>
+<div class="flex justify-between items-center py-base border-b border-white/5">
+<span class="text-[11px] font-data-mono text-tertiary-container">14:21:45</span>
+<span class="text-[11px] font-data-mono text-on-surface-variant">Sigma 4.2 Divergence Alert</span>
+<span class="text-[10px] font-label-caps px-2 py-0.5 bg-tertiary-container/20 text-tertiary-container rounded">FLAGGED</span>
+</div>
+<div class="flex justify-between items-center py-base border-b border-white/5">
+<span class="text-[11px] font-data-mono text-neutral-500">14:21:30</span>
+<span class="text-[11px] font-data-mono text-on-surface-variant">VAI Engine Re-Syncing</span>
+<span class="text-[10px] font-label-caps px-2 py-0.5 bg-white/10 text-neutral-400 rounded">SYNC</span>
+</div>
+<div class="flex justify-between items-center py-base border-b border-white/5">
+<span class="text-[11px] font-data-mono text-neutral-500">14:21:12</span>
+<span class="text-[11px] font-data-mono text-on-surface-variant">LIP Verification Initialized</span>
+<span class="text-[10px] font-label-caps px-2 py-0.5 bg-white/10 text-neutral-400 rounded">TASK</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Asset Correlation Section -->
+<div class="mt-gutter grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="glass-card p-sm rounded-lg flex items-center gap-md">
+<img alt="Bitcoin coin icon" class="w-12 h-12 rounded bg-surface-container" data-alt="close-up of a physical bitcoin with intricate golden details and reflective surface against a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbK3GKnmZENV51sJAmy-99GWUo57o4iQrcDGwocHfgoSp4blRpQZ24CaMla-AhghPaOQ8Pcsrx0-Bw3hM80D4Fzgls3sLM0vX_NCOdovbHNialZm8Pj3Ng4fkQ5qwtSXg32hoZ9ybA3FE9r6bYP39xMnB-zBQXpkz32sMld21-4X1CJLzjDm9AkbBH38Uc9wFXWSur1IwByO60OlfgFzWGbKSIzkNX3XRkfWxtEUwoOiNbLHrEOqrTxPnaJyYzf7XBrIy_CxqxXx4z"/>
+<div>
+<div class="text-[10px] font-label-caps text-neutral-500">CORRELATED ASSET</div>
+<div class="text-on-surface font-heading-md text-sm">ETH-USD-PERP</div>
+<div class="text-xs font-data-mono text-secondary-fixed">STABLE (+0.2%)</div>
+</div>
+</div>
+<div class="glass-card p-sm rounded-lg flex items-center gap-md border border-white/5">
+<div class="w-12 h-12 flex items-center justify-center bg-surface-container rounded">
+<span class="material-symbols-outlined text-cyan-500">hub</span>
+</div>
+<div>
+<div class="text-[10px] font-label-caps text-neutral-500">NETWORK NODE</div>
+<div class="text-on-surface font-heading-md text-sm">CHICAGO-12</div>
+<div class="text-xs font-data-mono text-neutral-400 uppercase">ACTIVE</div>
+</div>
+</div>
+<div class="glass-card p-sm rounded-lg flex items-center justify-center border-dashed border-2 border-white/10 hover:border-cyan-500/50 cursor-pointer transition-all">
+<span class="material-symbols-outlined text-neutral-500 mr-2">add</span>
+<span class="text-[10px] font-label-caps text-neutral-500">ADD MONITORING NODE</span>
+</div>
+</div>
+</main>
+</div>
+</body></html>
+
+3rd Snippet :
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GHOSTRADE | Historical Analysis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0A0A0A;
+            color: #e5e2e1;
+        }
+        .glass-panel {
+            background: rgba(23, 23, 23, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .luminous-border {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .crimson-glow {
+            box-shadow: 0 0 15px rgba(147, 0, 10, 0.3);
+            border-color: #93000a;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "#06b6d4",
+                      "surface-container": "#201f1f",
+                      "secondary-fixed-dim": "#4edea3",
+                      "tertiary-fixed": "#ffdad7",
+                      "tertiary-container": "#ff817a",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-secondary-container": "#00311f",
+                      "on-primary-fixed": "#001f26",
+                      "secondary-container": "#00a572",
+                      "inverse-primary": "#00687a",
+                      "error-container": "#93000a",
+                      "secondary-fixed": "#6ffbbe",
+                      "surface-container-low": "#1c1b1b",
+                      "surface-tint": "#4cd7f6",
+                      "on-tertiary": "#68000a",
+                      "outline-variant": "#3d494c",
+                      "on-tertiary-fixed": "#410004",
+                      "surface-container-highest": "#353534",
+                      "on-tertiary-container": "#7e000f",
+                      "surface-dim": "#131313",
+                      "outline": "#869397",
+                      "tertiary-fixed-dim": "#ffb3ad",
+                      "primary-fixed-dim": "#4cd7f6",
+                      "on-primary": "#003640",
+                      "on-primary-fixed-variant": "#004e5c",
+                      "error": "#ffb4ab",
+                      "on-secondary": "#003824",
+                      "surface": "#131313",
+                      "surface-variant": "#353534",
+                      "on-primary-container": "#00424f",
+                      "on-secondary-fixed-variant": "#005236",
+                      "primary": "#4cd7f6",
+                      "on-surface": "#e5e2e1",
+                      "on-error": "#690005",
+                      "on-tertiary-fixed-variant": "#930013",
+                      "background": "#131313",
+                      "on-surface-variant": "#bcc9cd",
+                      "on-background": "#e5e2e1",
+                      "primary-fixed": "#acedff",
+                      "secondary": "#4edea3",
+                      "inverse-surface": "#e5e2e1",
+                      "inverse-on-surface": "#313030",
+                      "surface-bright": "#3a3939",
+                      "surface-container-high": "#2a2a2a",
+                      "on-secondary-fixed": "#002113",
+                      "tertiary": "#ffb3ad",
+                      "on-error-container": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xl": "64px",
+                      "margin": "32px",
+                      "md": "24px",
+                      "lg": "40px",
+                      "xs": "8px",
+                      "base": "4px",
+                      "gutter": "20px",
+                      "sm": "16px"
+              },
+              "fontFamily": {
+                      "body-main": ["Inter"],
+                      "data-mono": ["Space Grotesk"],
+                      "display-lg": ["Inter"],
+                      "heading-md": ["Inter"],
+                      "label-caps": ["Space Grotesk"]
+              },
+              "fontSize": {
+                      "body-main": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                      "data-mono": ["14px", {"lineHeight": "1.5", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "heading-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="font-body-main text-body-main selection:bg-primary-container/30">
+<!-- TopAppBar -->
+<header class="sticky top-0 flex justify-between items-center w-full px-8 h-16 z-50 dark:bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-none">
+<div class="flex items-center gap-8">
+<span class="text-cyan-500 font-black tracking-tighter text-2xl">GHOSTRADE</span>
+<nav class="hidden md:flex gap-6">
+<a class="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors" href="#">Dashboard</a>
+<a class="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors" href="#">Signals</a>
+<a class="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-cyan-400 border-b-2 border-cyan-500 pb-2" href="#">History</a>
+<a class="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors" href="#">Watchlist</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-surface-container-low border border-white/5 px-3 py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-neutral-500 text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-xs font-data-mono w-48 placeholder:text-neutral-600" placeholder="QUERY ENGINE..." type="text"/>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-neutral-400 hover:text-cyan-400 cursor-pointer active:scale-95 transition-all" data-icon="notifications_active">notifications_active</span>
+<span class="material-symbols-outlined text-neutral-400 hover:text-cyan-400 cursor-pointer active:scale-95 transition-all" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<div class="flex">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 dark:bg-neutral-950 border-r border-white/5 flex flex-col z-40 shadow-2xl shadow-cyan-900/5">
+<div class="p-6 border-b border-white/5">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#4edea3]"></div>
+<span class="text-cyan-500 font-bold uppercase text-xs tracking-widest">INTEGRITY ENGINE</span>
+</div>
+<p class="text-[10px] text-neutral-500 font-data-mono uppercase">V2.04 ACTIVE // SYSTEM_STABLE</p>
+</div>
+<nav class="flex-1 py-4">
+<div class="flex items-center gap-3 text-neutral-500 px-4 py-3 hover:bg-white/5 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined group-hover:text-cyan-400 transition-colors" data-icon="grid_view">grid_view</span>
+<span class="font-body-main text-xs font-medium uppercase tracking-wider">Overview</span>
+</div>
+<div class="flex items-center gap-3 text-neutral-500 px-4 py-3 hover:bg-white/5 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined group-hover:text-cyan-400 transition-colors" data-icon="psychology">psychology</span>
+<span class="font-body-main text-xs font-medium uppercase tracking-wider">VAI Engine</span>
+</div>
+<div class="flex items-center gap-3 bg-cyan-500/10 text-cyan-400 border-r-2 border-cyan-500 px-4 py-3 cursor-default">
+<span class="material-symbols-outlined" data-icon="waves">waves</span>
+<span class="font-body-main text-xs font-medium uppercase tracking-wider">VBS Flow</span>
+</div>
+<div class="flex items-center gap-3 text-neutral-500 px-4 py-3 hover:bg-white/5 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined group-hover:text-cyan-400 transition-colors" data-icon="security">security</span>
+<span class="font-body-main text-xs font-medium uppercase tracking-wider">LIP Analysis</span>
+</div>
+<div class="flex items-center gap-3 text-neutral-500 px-4 py-3 hover:bg-white/5 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined group-hover:text-cyan-400 transition-colors" data-icon="settings">settings</span>
+<span class="font-body-main text-xs font-medium uppercase tracking-wider">Terminal Settings</span>
+</div>
+</nav>
+<div class="p-4 mt-auto">
+<button class="w-full bg-cyan-500 text-black font-label-caps text-[10px] py-3 rounded-sm hover:bg-cyan-400 transition-all active:scale-95">
+                    RUN DIAGNOSTICS
+                </button>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 flex-1 p-margin min-h-screen">
+<!-- Page Header & Date Picker -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-lg">
+<div>
+<h1 class="font-display-lg text-display-lg mb-2">Historical Analysis</h1>
+<p class="text-on-surface-variant font-body-main opacity-70">Auditing temporal data clusters for integrity drift.</p>
+</div>
+<!-- Custom Date Range Picker Component -->
+<div class="glass-panel p-4 flex items-center gap-4 rounded-lg">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-neutral-500">ANALYSIS WINDOW</span>
+<div class="flex items-center gap-3">
+<span class="font-data-mono text-sm text-cyan-500">2024.03.01</span>
+<span class="material-symbols-outlined text-neutral-600 text-xs">arrow_forward</span>
+<span class="font-data-mono text-sm text-cyan-500">2024.03.31</span>
+</div>
+</div>
+<div class="h-8 w-[1px] bg-white/10 mx-2"></div>
+<button class="flex items-center gap-2 px-3 py-2 bg-white/5 hover:bg-white/10 transition-colors rounded">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span class="font-label-caps text-[10px]">ADJUST RANGE</span>
+</button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Comparative Scoring Card (Left) -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-gutter">
+<div class="glass-panel p-md rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 blur-3xl rounded-full"></div>
+<div class="flex justify-between items-start mb-lg">
+<h3 class="font-label-caps text-on-surface-variant">INTEGRITY BENCHMARK</h3>
+<span class="font-data-mono text-[10px] px-2 py-1 bg-secondary/10 text-secondary border border-secondary/20 rounded">STABLE</span>
+</div>
+<div class="flex items-center justify-between gap-8">
+<div class="flex flex-col items-center">
+<span class="font-label-caps text-neutral-500 text-[10px] mb-4">CURRENT</span>
+<div class="w-24 h-24 rounded-full border-4 border-cyan-500/20 flex items-center justify-center relative">
+<svg class="absolute inset-0 w-full h-full -rotate-90">
+<circle class="text-cyan-500" cx="48" cy="48" fill="none" r="44" stroke="currentColor" stroke-dasharray="276" stroke-dashoffset="30" stroke-width="4"></circle>
+</svg>
+<span class="font-display-lg text-3xl text-cyan-500">89</span>
+</div>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-neutral-600 text-xl">compare_arrows</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-label-caps text-neutral-500 text-[10px] mb-4">FLASH CRASH (MAR 24)</span>
+<div class="w-24 h-24 rounded-full border-4 border-error-container/20 flex items-center justify-center relative crimson-glow">
+<svg class="absolute inset-0 w-full h-full -rotate-90">
+<circle class="text-on-tertiary-container" cx="48" cy="48" fill="none" r="44" stroke="currentColor" stroke-dasharray="276" stroke-dashoffset="210" stroke-width="4"></circle>
+</svg>
+<span class="font-display-lg text-3xl text-on-tertiary-container">24</span>
+</div>
+</div>
+</div>
+<div class="mt-lg pt-md border-t border-white/5 flex justify-between items-center">
+<span class="font-body-main text-xs text-on-surface-variant">Variance from historical anomaly:</span>
+<span class="font-data-mono text-secondary text-sm">+65.0% RECOVERY</span>
+</div>
+</div>
+<!-- Event Detail Card -->
+<div class="glass-panel p-md rounded-xl flex flex-col gap-4 border-l-4 border-on-tertiary-container">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-tertiary-container" data-weight="fill">warning</span>
+<span class="font-label-caps text-on-tertiary-container">CRITICAL HISTORICAL ANOMALY</span>
+</div>
+<h4 class="font-heading-md text-sm uppercase tracking-tight">March 2024 Flash Crash Event</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed opacity-80">
+                            Liquidity evaporation detected across 14 primary trading pairs. Ghost-fills accounted for 12.4% of volume during the 300ms window. High-correlation signals suggest automated exit triggers.
+                        </p>
+<div class="flex gap-2">
+<span class="text-[10px] font-data-mono px-2 py-0.5 bg-white/5 rounded text-neutral-400">#VOLATILITY</span>
+<span class="text-[10px] font-data-mono px-2 py-0.5 bg-white/5 rounded text-neutral-400">#LIP_FAILURE</span>
+</div>
+</div>
+</div>
+<!-- Timeline View (Right) -->
+<div class="col-span-12 lg:col-span-7">
+<div class="glass-panel p-md rounded-xl h-full flex flex-col">
+<div class="flex justify-between items-center mb-lg">
+<div>
+<h3 class="font-label-caps text-on-surface-variant">TRUST SCORE TIMELINE</h3>
+<p class="text-[10px] font-data-mono text-neutral-500">GRANULARITY: 1H INTERVALS</p>
+</div>
+<div class="flex gap-2">
+<button class="p-1 hover:bg-white/5 rounded"><span class="material-symbols-outlined text-neutral-500 text-sm">fullscreen</span></button>
+<button class="p-1 hover:bg-white/5 rounded"><span class="material-symbols-outlined text-neutral-500 text-sm">download</span></button>
+</div>
+</div>
+<!-- Timeline Chart Visualization Area -->
+<div class="flex-1 min-h-[350px] relative mt-4">
+<!-- SVG Chart Representation -->
+<div class="absolute inset-0 flex flex-col justify-between py-2 text-[9px] font-data-mono text-neutral-700 pointer-events-none">
+<div class="w-full border-t border-white/[0.03] flex justify-between"><span>100</span><span>OPTIMAL</span></div>
+<div class="w-full border-t border-white/[0.03] flex justify-between"><span>75</span><span>STABLE</span></div>
+<div class="w-full border-t border-white/[0.03] flex justify-between"><span>50</span><span>CONCERN</span></div>
+<div class="w-full border-t border-white/[0.03] flex justify-between"><span>25</span><span>CRITICAL</span></div>
+<div class="w-full border-t border-white/[0.03] flex justify-between"><span>0</span><span>FAILURE</span></div>
+</div>
+<!-- Simplified Vector Path for Chart -->
+<svg class="absolute inset-0 w-full h-full overflow-visible" preserveaspectratio="none">
+<!-- Area Gradient (Optional/Low opacity) -->
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#06b6d4" stop-opacity="0.1"></stop>
+<stop offset="100%" stop-color="#06b6d4" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Primary Line -->
+<path class="stroke-cyan-500 fill-none" d="M0,80 L50,85 L100,75 L150,90 L200,82 L250,88 L300,92 L350,280 L400,260 L450,200 L500,120 L550,110 L600,105" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<!-- Anomaly Marker -->
+<circle class="fill-on-tertiary-container animate-pulse" cx="350" cy="280" r="4" vector-effect="non-scaling-stroke"></circle>
+</svg>
+<!-- Tooltip Simulation -->
+<div class="absolute left-[355px] top-[240px] glass-panel p-2 rounded text-[10px] z-10 border-on-tertiary-container/30">
+<div class="font-data-mono text-on-tertiary-container font-bold">EVENT DETECTED</div>
+<div class="text-neutral-300">SCORE: 24 (CRITICAL)</div>
+<div class="text-neutral-500">2024.03.14 14:02:11</div>
+</div>
+</div>
+<!-- Timeline X-Axis Labels -->
+<div class="flex justify-between px-2 pt-4 border-t border-white/5">
+<span class="font-data-mono text-[10px] text-neutral-600">MAR 01</span>
+<span class="font-data-mono text-[10px] text-neutral-600">MAR 08</span>
+<span class="font-data-mono text-[10px] text-neutral-600">MAR 15</span>
+<span class="font-data-mono text-[10px] text-neutral-600">MAR 22</span>
+<span class="font-data-mono text-[10px] text-neutral-600">MAR 31</span>
+</div>
+</div>
+</div>
+<!-- Footer Summary Blocks -->
+<div class="col-span-12 grid grid-cols-1 md:grid-cols-4 gap-gutter mt-2">
+<div class="glass-panel p-sm rounded-lg flex flex-col">
+<span class="font-label-caps text-[10px] text-neutral-500 mb-1">TOTAL EVENTS</span>
+<span class="font-data-mono text-xl text-on-surface">1,242</span>
+</div>
+<div class="glass-panel p-sm rounded-lg flex flex-col">
+<span class="font-label-caps text-[10px] text-neutral-500 mb-1">AVG INTEGRITY</span>
+<span class="font-data-mono text-xl text-secondary">92.4%</span>
+</div>
+<div class="glass-panel p-sm rounded-lg flex flex-col">
+<span class="font-label-caps text-[10px] text-neutral-500 mb-1">DRIFT DETECTED</span>
+<span class="font-data-mono text-xl text-on-tertiary-container">LOW</span>
+</div>
+<div class="glass-panel p-sm rounded-lg flex flex-col">
+<span class="font-label-caps text-[10px] text-neutral-500 mb-1">RELIABILITY INDEX</span>
+<span class="font-data-mono text-xl text-cyan-500">0.9994</span>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Background Decorative Image (Subtle Texture) -->
+<div class="fixed inset-0 pointer-events-none -z-10 opacity-[0.03]">
+<img alt="" class="w-full h-full object-cover grayscale" data-alt="Abstract cinematic dark digital grid pattern with subtle neon cyan light fragments and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu9ITR5f2M5juDxLs3EPvwunPMbpy9fOq05QaDzx0Nim4EvDow6uIMOo7hUJu30IEG_m4YiWFMXE_S5H07QA2mygszp9wUlcXOsWc5V2muYeOzTLX5MO5RdRJPL372_SKkz2kCKydkrD4DXa2tD5n4GiX29tbALbEnPDSqLuFIM-3OpLz5damndVr3u3oLlGpezVD2ST1uEJ7lJnR3RG2k9DTJNyEYWAuuXnCkyIuUhIKpLIsBPL28zrjWzYuO4WKXmUFpx4OZspAI"/>
+</div>
+</body></html>
+
+another snippet:
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GHOSTRADE | Historical Analysis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0A0A0A;
+            color: #e5e2e1;
+        }
+        .glass-panel {
+            background: rgba(23, 23, 23, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .luminous-border {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .crimson-glow {
+            box-shadow: 0 0 15px rgba(147, 0, 10, 0.3);
+            border-color: #93000a;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "#06b6d4",
+                      "surface-container": "#201f1f",
+                      "secondary-fixed-dim": "#4edea3",
+                      "tertiary-fixed": "#ffdad7",
+                      "tertiary-container": "#ff817a",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-secondary-container": "#00311f",
+                      "on-primary-fixed": "#001f26",
+                      "secondary-container": "#00a572",
+                      "inverse-primary": "#00687a",
+                      "error-container": "#93000a",
+                      "secondary-fixed": "#6ffbbe",
+                      "surface-container-low": "#1c1b1b",
+                      "surface-tint": "#4cd7f6",
+                      "on-tertiary": "#68000a",
+                      "outline-variant": "#3d494c",
+                      "on-tertiary-fixed": "#410004",
+                      "surface-container-highest": "#353534",
+                      "on-tertiary-container": "#7e000f",
+                      "surface-dim": "#131313",
+                      "outline": "#869397",
+                      "tertiary-fixed-dim": "#ffb3ad",
+                      "primary-fixed-dim": "#4cd7f6",
+                      "on-primary": "#003640",
+                      "on-primary-fixed-variant": "#004e5c",
+                      "error": "#ffb4ab",
+                      "on-secondary": "#003824",
+                      "surface": "#131313",
+                      "surface-variant": "#353534",
+                      "on-primary-container": "#00424f",
+                      "on-secondary-fixed-variant": "#005236",
+                      "primary": "#4cd7f6",
+                      "on-surface": "#e5e2e1",
+                      "on-error": "#690005",
+                      "on-tertiary-fixed-variant": "#930013",
+                      "background": "#131313",
+                      "on-surface-variant": "#bcc9cd",
+                      "on-background": "#e5e2e1",
+                      "primary-fixed": "#acedff",
+                      "secondary": "#4edea3",
+                      "inverse-surface": "#e5e2e1",
+                      "inverse-on-surface": "#313030",
+                      "surface-bright": "#3a3939",
+                      "surface-container-high": "#2a2a2a",
+                      "on-secondary-fixed": "#002113",
+                      "tertiary": "#ffb3ad",
+                      "on-error-container": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xl": "64px",
+                      "margin": "32px",
+                      "md": "24px",
+                      "lg": "40px",
+                      "xs": "8px",
+                      "base": "4px",
+                      "gutter": "20px",
+                      "sm": "16px"
+              },
+              "fontFamily": {
+                      "body-main": ["Inter"],
+                      "data-mono": ["Space Grotesk"],
+                      "display-lg": ["Inter"],
+                      "heading-md": ["Inter"],
+                      "label-caps": ["Space Grotesk"]
+              },
+              "fontSize": {
+                      "body-main": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                      "data-mono": ["14px", {"lineHeight": "1.5", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "heading-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="font-body-main text-body-main selection:bg-primary-container/30">
+<!-- TopAppBar -->
+<header class="sticky top-0 flex justify-between items-center w-full px-8 h-16 z-50 dark:bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-none">
+<div class="flex items-center gap-8">
+<span class="text-cyan-500 font-black tracking-tighter text-2xl">GHOSTRADE</span>
+<nav class="hidden md:flex gap-6">
+<a class="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors" href="#">Dashboard</a>
+<a class="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors" href="#">Signals</a>
+<a class="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-cyan-400 border-b-2 border-cyan-500 pb-2" href="#">History</a>
+<a class="font-['Inter'] tracking-tight text-sm uppercase font-semibold text-neutral-500 hover:text-neutral-200 transition-colors" href="#">Watchlist</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-surface-container-low border border-white/5 px-3 py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-neutral-500 text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-xs font-data-mono w-48 placeholder:text-neutral-600" placeholder="QUERY ENGINE..." type="text"/>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-neutral-400 hover:text-cyan-400 cursor-pointer active:scale-95 transition-all" data-icon="notifications_active">notifications_active</span>
+<span class="material-symbols-outlined text-neutral-400 hover:text-cyan-400 cursor-pointer active:scale-95 transition-all" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<div class="flex">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 dark:bg-neutral-950 border-r border-white/5 flex flex-col z-40 shadow-2xl shadow-cyan-900/5">
+<div class="p-6 border-b border-white/5">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#4edea3]"></div>
+<span class="text-cyan-500 font-bold uppercase text-xs tracking-widest">INTEGRITY ENGINE</span>
+</div>
+<p class="text-[10px] text-neutral-500 font-data-mono uppercase">V2.04 ACTIVE // SYSTEM_STABLE</p>
+</div>
+<nav class="flex-1 py-4">
+<div class="flex items-center gap-3 text-neutral-500 px-4 py-3 hover:bg-white/5 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined group-hover:text-cyan-400 transition-colors" data-icon="grid_view">grid_view</span>
+<span class="font-body-main text-xs font-medium uppercase tracking-wider">Overview</span>
+</div>
+<div class="flex items-center gap-3 text-neutral-500 px-4 py-3 hover:bg-white/5 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined group-hover:text-cyan-400 transition-colors" data-icon="psychology">psychology</span>
+<span class="font-body-main text-xs font-medium uppercase tracking-wider">VAI Engine</span>
+</div>
+<div class="flex items-center gap-3 bg-cyan-500/10 text-cyan-400 border-r-2 border-cyan-500 px-4 py-3 cursor-default">
+<span class="material-symbols-outlined" data-icon="waves">waves</span>
+<span class="font-body-main text-xs font-medium uppercase tracking-wider">VBS Flow</span>
+</div>
+<div class="flex items-center gap-3 text-neutral-500 px-4 py-3 hover:bg-white/5 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined group-hover:text-cyan-400 transition-colors" data-icon="security">security</span>
+<span class="font-body-main text-xs font-medium uppercase tracking-wider">LIP Analysis</span>
+</div>
+<div class="flex items-center gap-3 text-neutral-500 px-4 py-3 hover:bg-white/5 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined group-hover:text-cyan-400 transition-colors" data-icon="settings">settings</span>
+<span class="font-body-main text-xs font-medium uppercase tracking-wider">Terminal Settings</span>
+</div>
+</nav>
+<div class="p-4 mt-auto">
+<button class="w-full bg-cyan-500 text-black font-label-caps text-[10px] py-3 rounded-sm hover:bg-cyan-400 transition-all active:scale-95">
+                    RUN DIAGNOSTICS
+                </button>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 flex-1 p-margin min-h-screen">
+<!-- Page Header & Date Picker -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-lg">
+<div>
+<h1 class="font-display-lg text-display-lg mb-2">Historical Analysis</h1>
+<p class="text-on-surface-variant font-body-main opacity-70">Auditing temporal data clusters for integrity drift.</p>
+</div>
+<!-- Custom Date Range Picker Component -->
+<div class="glass-panel p-4 flex items-center gap-4 rounded-lg">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-neutral-500">ANALYSIS WINDOW</span>
+<div class="flex items-center gap-3">
+<span class="font-data-mono text-sm text-cyan-500">2024.03.01</span>
+<span class="material-symbols-outlined text-neutral-600 text-xs">arrow_forward</span>
+<span class="font-data-mono text-sm text-cyan-500">2024.03.31</span>
+</div>
+</div>
+<div class="h-8 w-[1px] bg-white/10 mx-2"></div>
+<button class="flex items-center gap-2 px-3 py-2 bg-white/5 hover:bg-white/10 transition-colors rounded">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span class="font-label-caps text-[10px]">ADJUST RANGE</span>
+</button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Comparative Scoring Card (Left) -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-gutter">
+<div class="glass-panel p-md rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 blur-3xl rounded-full"></div>
+<div class="flex justify-between items-start mb-lg">
+<h3 class="font-label-caps text-on-surface-variant">INTEGRITY BENCHMARK</h3>
+<span class="font-data-mono text-[10px] px-2 py-1 bg-secondary/10 text-secondary border border-secondary/20 rounded">STABLE</span>
+</div>
+<div class="flex items-center justify-between gap-8">
+<div class="flex flex-col items-center">
+<span class="font-label-caps text-neutral-500 text-[10px] mb-4">CURRENT</span>
+<div class="w-24 h-24 rounded-full border-4 border-cyan-500/20 flex items-center justify-center relative">
+<svg class="absolute inset-0 w-full h-full -rotate-90">
+<circle class="text-cyan-500" cx="48" cy="48" fill="none" r="44" stroke="currentColor" stroke-dasharray="276" stroke-dashoffset="30" stroke-width="4"></circle>
+</svg>
+<span class="font-display-lg text-3xl text-cyan-500">89</span>
+</div>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-neutral-600 text-xl">compare_arrows</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-label-caps text-neutral-500 text-[10px] mb-4">FLASH CRASH (MAR 24)</span>
+<div class="w-24 h-24 rounded-full border-4 border-error-container/20 flex items-center justify-center relative crimson-glow">
+<svg class="absolute inset-0 w-full h-full -rotate-90">
+<circle class="text-on-tertiary-container" cx="48" cy="48" fill="none" r="44" stroke="currentColor" stroke-dasharray="276" stroke-dashoffset="210" stroke-width="4"></circle>
+</svg>
+<span class="font-display-lg text-3xl text-on-tertiary-container">24</span>
+</div>
+</div>
+</div>
+<div class="mt-lg pt-md border-t border-white/5 flex justify-between items-center">
+<span class="font-body-main text-xs text-on-surface-variant">Variance from historical anomaly:</span>
+<span class="font-data-mono text-secondary text-sm">+65.0% RECOVERY</span>
+</div>
+</div>
+<!-- Event Detail Card -->
+<div class="glass-panel p-md rounded-xl flex flex-col gap-4 border-l-4 border-on-tertiary-container">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-tertiary-container" data-weight="fill">warning</span>
+<span class="font-label-caps text-on-tertiary-container">CRITICAL HISTORICAL ANOMALY</span>
+</div>
+<h4 class="font-heading-md text-sm uppercase tracking-tight">March 2024 Flash Crash Event</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed opacity-80">
+                            Liquidity evaporation detected across 14 primary trading pairs. Ghost-fills accounted for 12.4% of volume during the 300ms window. High-correlation signals suggest automated exit triggers.
+                        </p>
+<div class="flex gap-2">
+<span class="text-[10px] font-data-mono px-2 py-0.5 bg-white/5 rounded text-neutral-400">#VOLATILITY</span>
+<span class="text-[10px] font-data-mono px-2 py-0.5 bg-white/5 rounded text-neutral-400">#LIP_FAILURE</span>
+</div>
+</div>
+</div>
+<!-- Timeline View (Right) -->
+<div class="col-span-12 lg:col-span-7">
+<div class="glass-panel p-md rounded-xl h-full flex flex-col">
+<div class="flex justify-between items-center mb-lg">
+<div>
+<h3 class="font-label-caps text-on-surface-variant">TRUST SCORE TIMELINE</h3>
+<p class="text-[10px] font-data-mono text-neutral-500">GRANULARITY: 1H INTERVALS</p>
+</div>
+<div class="flex gap-2">
+<button class="p-1 hover:bg-white/5 rounded"><span class="material-symbols-outlined text-neutral-500 text-sm">fullscreen</span></button>
+<button class="p-1 hover:bg-white/5 rounded"><span class="material-symbols-outlined text-neutral-500 text-sm">download</span></button>
+</div>
+</div>
+<!-- Timeline Chart Visualization Area -->
+<div class="flex-1 min-h-[350px] relative mt-4">
+<!-- SVG Chart Representation -->
+<div class="absolute inset-0 flex flex-col justify-between py-2 text-[9px] font-data-mono text-neutral-700 pointer-events-none">
+<div class="w-full border-t border-white/[0.03] flex justify-between"><span>100</span><span>OPTIMAL</span></div>
+<div class="w-full border-t border-white/[0.03] flex justify-between"><span>75</span><span>STABLE</span></div>
+<div class="w-full border-t border-white/[0.03] flex justify-between"><span>50</span><span>CONCERN</span></div>
+<div class="w-full border-t border-white/[0.03] flex justify-between"><span>25</span><span>CRITICAL</span></div>
+<div class="w-full border-t border-white/[0.03] flex justify-between"><span>0</span><span>FAILURE</span></div>
+</div>
+<!-- Simplified Vector Path for Chart -->
+<svg class="absolute inset-0 w-full h-full overflow-visible" preserveaspectratio="none">
+<!-- Area Gradient (Optional/Low opacity) -->
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#06b6d4" stop-opacity="0.1"></stop>
+<stop offset="100%" stop-color="#06b6d4" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Primary Line -->
+<path class="stroke-cyan-500 fill-none" d="M0,80 L50,85 L100,75 L150,90 L200,82 L250,88 L300,92 L350,280 L400,260 L450,200 L500,120 L550,110 L600,105" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<!-- Anomaly Marker -->
+<circle class="fill-on-tertiary-container animate-pulse" cx="350" cy="280" r="4" vector-effect="non-scaling-stroke"></circle>
+</svg>
+<!-- Tooltip Simulation -->
+<div class="absolute left-[355px] top-[240px] glass-panel p-2 rounded text-[10px] z-10 border-on-tertiary-container/30">
+<div class="font-data-mono text-on-tertiary-container font-bold">EVENT DETECTED</div>
+<div class="text-neutral-300">SCORE: 24 (CRITICAL)</div>
+<div class="text-neutral-500">2024.03.14 14:02:11</div>
+</div>
+</div>
+<!-- Timeline X-Axis Labels -->
+<div class="flex justify-between px-2 pt-4 border-t border-white/5">
+<span class="font-data-mono text-[10px] text-neutral-600">MAR 01</span>
+<span class="font-data-mono text-[10px] text-neutral-600">MAR 08</span>
+<span class="font-data-mono text-[10px] text-neutral-600">MAR 15</span>
+<span class="font-data-mono text-[10px] text-neutral-600">MAR 22</span>
+<span class="font-data-mono text-[10px] text-neutral-600">MAR 31</span>
+</div>
+</div>
+</div>
+<!-- Footer Summary Blocks -->
+<div class="col-span-12 grid grid-cols-1 md:grid-cols-4 gap-gutter mt-2">
+<div class="glass-panel p-sm rounded-lg flex flex-col">
+<span class="font-label-caps text-[10px] text-neutral-500 mb-1">TOTAL EVENTS</span>
+<span class="font-data-mono text-xl text-on-surface">1,242</span>
+</div>
+<div class="glass-panel p-sm rounded-lg flex flex-col">
+<span class="font-label-caps text-[10px] text-neutral-500 mb-1">AVG INTEGRITY</span>
+<span class="font-data-mono text-xl text-secondary">92.4%</span>
+</div>
+<div class="glass-panel p-sm rounded-lg flex flex-col">
+<span class="font-label-caps text-[10px] text-neutral-500 mb-1">DRIFT DETECTED</span>
+<span class="font-data-mono text-xl text-on-tertiary-container">LOW</span>
+</div>
+<div class="glass-panel p-sm rounded-lg flex flex-col">
+<span class="font-label-caps text-[10px] text-neutral-500 mb-1">RELIABILITY INDEX</span>
+<span class="font-data-mono text-xl text-cyan-500">0.9994</span>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Background Decorative Image (Subtle Texture) -->
+<div class="fixed inset-0 pointer-events-none -z-10 opacity-[0.03]">
+<img alt="" class="w-full h-full object-cover grayscale" data-alt="Abstract cinematic dark digital grid pattern with subtle neon cyan light fragments and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu9ITR5f2M5juDxLs3EPvwunPMbpy9fOq05QaDzx0Nim4EvDow6uIMOo7hUJu30IEG_m4YiWFMXE_S5H07QA2mygszp9wUlcXOsWc5V2muYeOzTLX5MO5RdRJPL372_SKkz2kCKydkrD4DXa2tD5n4GiX29tbALbEnPDSqLuFIM-3OpLz5damndVr3u3oLlGpezVD2ST1uEJ7lJnR3RG2k9DTJNyEYWAuuXnCkyIuUhIKpLIsBPL28zrjWzYuO4WKXmUFpx4OZspAI"/>
+</div>
+</body></html>
+
+5th snippet:
+
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GHOSTRADE TERMINAL - System Configuration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#ffb3ad",
+                      "primary": "#4cd7f6",
+                      "surface-tint": "#4cd7f6",
+                      "on-tertiary-container": "#7e000f",
+                      "on-primary-container": "#00424f",
+                      "outline-variant": "#3d494c",
+                      "surface-variant": "#353534",
+                      "on-primary-fixed-variant": "#004e5c",
+                      "on-error": "#690005",
+                      "inverse-surface": "#e5e2e1",
+                      "surface-container": "#201f1f",
+                      "on-secondary-fixed-variant": "#005236",
+                      "secondary-fixed": "#6ffbbe",
+                      "on-tertiary-fixed": "#410004",
+                      "background": "#131313",
+                      "surface-bright": "#3a3939",
+                      "primary-fixed-dim": "#4cd7f6",
+                      "error": "#ffb4ab",
+                      "secondary-fixed-dim": "#4edea3",
+                      "primary-container": "#06b6d4",
+                      "secondary": "#4edea3",
+                      "surface-container-low": "#1c1b1b",
+                      "on-surface": "#e5e2e1",
+                      "surface-container-high": "#2a2a2a",
+                      "on-tertiary-fixed-variant": "#930013",
+                      "surface": "#131313",
+                      "tertiary-fixed": "#ffdad7",
+                      "primary-fixed": "#acedff",
+                      "on-error-container": "#ffdad6",
+                      "on-primary": "#003640",
+                      "tertiary-container": "#ff817a",
+                      "on-tertiary": "#68000a",
+                      "on-primary-fixed": "#001f26",
+                      "error-container": "#93000a",
+                      "secondary-container": "#00a572",
+                      "inverse-primary": "#00687a",
+                      "inverse-on-surface": "#313030",
+                      "outline": "#869397",
+                      "surface-container-highest": "#353534",
+                      "on-background": "#e5e2e1",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-surface-variant": "#bcc9cd",
+                      "on-secondary-fixed": "#002113",
+                      "surface-dim": "#131313",
+                      "on-secondary-container": "#00311f",
+                      "on-secondary": "#003824",
+                      "tertiary-fixed-dim": "#ffb3ad"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "lg": "40px",
+                      "xs": "8px",
+                      "md": "24px",
+                      "margin": "32px",
+                      "gutter": "20px",
+                      "xl": "64px",
+                      "sm": "16px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "data-mono": ["Space Grotesk"],
+                      "heading-md": ["Inter"],
+                      "body-main": ["Inter"],
+                      "label-caps": ["Space Grotesk"],
+                      "display-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "data-mono": ["14px", {"lineHeight": "1.5", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "heading-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-main": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .glass-panel {
+            background: rgba(23, 23, 23, 0.8);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            background: #353534;
+            height: 4px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 12px;
+            width: 12px;
+            background: #4cd7f6;
+            margin-top: -4px;
+            border-radius: 0;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-main antialiased selection:bg-primary/30">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-8 h-16 bg-[#0A0A0A]/80 backdrop-blur-xl border-b border-white/10 font-['Inter'] tracking-tight">
+<div class="text-xl font-black tracking-tighter text-cyan-500">GHOSTRADE</div>
+<nav class="hidden md:flex gap-8 items-center h-full">
+<a class="text-neutral-500 hover:text-neutral-300 transition-colors" href="#">Dashboard</a>
+<a class="text-neutral-500 hover:text-neutral-300 transition-colors" href="#">Signals</a>
+<a class="text-neutral-500 hover:text-neutral-300 transition-colors" href="#">History</a>
+<a class="text-neutral-500 hover:text-neutral-300 transition-colors" href="#">Watchlist</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="text-neutral-500 hover:text-neutral-300 cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-cyan-400 border-b-2 border-cyan-500 pb-1 cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-white/10">
+<img alt="User Terminal Profile" data-alt="minimalist stylized avatar of a technical user in dark techwear aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmhbOREOHzGIXHPAA8o-S6PXafArrZHhTvuOyoQeg3uCz4x5mO3pKg8q7YD_qNYqC7pecGwAxqXeNGbfXhEyQYa_OTomhbK8bRYnAjj9QUWxV7rZW69VAOt1-ajTWEWPRhLw4Lr_Z2OKSB1skH6h1gNLkpWd-sO9WGnfMQGAQeXd0SwOH8cIQOCW90DBt9FQOGTww79JLxLtUjYcewAaXHVPG_iF350IXDwhweI372Kw-EdcOY9X0zRKm6hpgVo3Rh8eRtKdIxIaTt"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-[#171717] border-r border-white/10 flex flex-col pt-6 z-40 hidden md:flex">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-2 mb-1">
+<div class="h-2 w-2 bg-secondary rounded-full"></div>
+<span class="text-cyan-500 font-data-mono text-label-caps">INTEGRITY ENGINE</span>
+</div>
+<span class="text-neutral-500 text-[10px] font-data-mono tracking-widest">v4.2.0-STABLE</span>
+</div>
+<nav class="flex-1 flex flex-col">
+<a class="flex items-center gap-4 px-6 py-3 text-neutral-500 hover:text-neutral-200 hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">terminal</span>
+<span class="font-['Inter'] uppercase text-[11px] font-bold tracking-widest">Terminal</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-neutral-500 hover:text-neutral-200 hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">sensors</span>
+<span class="font-['Inter'] uppercase text-[11px] font-bold tracking-widest">Live Feed</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-neutral-500 hover:text-neutral-200 hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">security</span>
+<span class="font-['Inter'] uppercase text-[11px] font-bold tracking-widest">Risk Engine</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-neutral-500 hover:text-neutral-200 hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="font-['Inter'] uppercase text-[11px] font-bold tracking-widest">Ghost Logs</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 bg-cyan-500/10 text-cyan-400 border-r-2 border-cyan-500 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">memory</span>
+<span class="font-['Inter'] uppercase text-[11px] font-bold tracking-widest">System Health</span>
+</a>
+</nav>
+<div class="p-6 mt-auto">
+<button class="w-full py-3 bg-primary text-on-primary font-label-caps text-xs tracking-[0.2em] mb-4 hover:opacity-90 active:scale-[0.98] transition-all">
+                INITIATE SCAN
+            </button>
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-2 text-neutral-500 hover:text-neutral-200 text-[10px] uppercase font-bold tracking-widest" href="#">
+<span class="material-symbols-outlined text-sm">description</span> Docs
+                </a>
+<a class="flex items-center gap-2 text-neutral-500 hover:text-neutral-200 text-[10px] uppercase font-bold tracking-widest" href="#">
+<span class="material-symbols-outlined text-sm">help_center</span> Support
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-16 min-h-screen flex flex-col">
+<div class="p-margin max-w-6xl mx-auto w-full">
+<header class="mb-lg">
+<div class="flex items-center justify-between">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-background mb-base uppercase italic tracking-tighter">System Config</h1>
+<p class="text-neutral-500 font-data-mono text-sm">MANAGE TERMINAL INTEGRITY AND SIGNAL PROTOCOLS</p>
+</div>
+<div class="flex items-center gap-gutter">
+<div class="text-right">
+<div class="text-secondary font-data-mono text-xs uppercase tracking-widest">Engine Status</div>
+<div class="text-on-background font-data-mono text-sm">ENCRYPTED / SYNCED</div>
+</div>
+<div class="h-10 w-[1px] bg-white/10"></div>
+<div class="text-right">
+<div class="text-neutral-500 font-data-mono text-xs uppercase tracking-widest">Kernel</div>
+<div class="text-on-background font-data-mono text-sm">v4.2.0-STABLE</div>
+</div>
+</div>
+</div>
+</header>
+<div class="grid grid-cols-12 gap-gutter">
+<!-- API & Provider Management -->
+<section class="col-span-12 lg:col-span-7 space-y-gutter">
+<div class="bg-surface-container-low border border-white/5 p-md relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+<h3 class="font-label-caps text-label-caps text-primary mb-md flex items-center gap-2">
+<span class="material-symbols-outlined text-base">database</span> LIVE DATA PROVIDER
+                        </h3>
+<div class="space-y-sm">
+<div class="space-y-base">
+<label class="text-neutral-500 font-label-caps text-[10px] tracking-widest uppercase">Provider Endpoint</label>
+<div class="relative">
+<input class="w-full bg-black border border-white/10 px-4 py-3 text-data-mono text-primary focus:border-primary focus:ring-0 transition-all" readonly="" type="text" value="wss://stream.ghostrade-internal.io/v1/live"/>
+<span class="material-symbols-outlined absolute right-4 top-3 text-neutral-600">lock</span>
+</div>
+</div>
+<div class="space-y-base">
+<label class="text-neutral-500 font-label-caps text-[10px] tracking-widest uppercase">Primary API Key</label>
+<div class="flex gap-2">
+<input class="flex-1 bg-black border border-white/10 px-4 py-3 text-data-mono text-on-surface focus:border-primary focus:ring-0 transition-all" type="password" value="GT-8829-XJ-9921-PROTECT"/>
+<button class="px-4 border border-white/10 hover:bg-white/5 text-neutral-400">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<div class="pt-sm flex justify-between items-center">
+<span class="text-secondary font-data-mono text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">check_circle</span> UPTIME: 99.9992%
+                                </span>
+<button class="text-primary font-label-caps text-[10px] tracking-widest uppercase border-b border-primary/30 hover:border-primary">Regenerate Token</button>
+</div>
+</div>
+</div>
+<!-- Signal Weighting Section -->
+<div class="bg-surface-container-low border border-white/5 p-md">
+<h3 class="font-label-caps text-label-caps text-primary mb-md flex items-center gap-2">
+<span class="material-symbols-outlined text-base">analytics</span> SIGNAL WEIGHTING ENGINE
+                        </h3>
+<div class="space-y-md">
+<div class="grid grid-cols-2 gap-md">
+<div class="space-y-base">
+<div class="flex justify-between items-end">
+<label class="text-neutral-300 font-label-caps text-[11px] uppercase tracking-widest">VAI (Volatility Index)</label>
+<span class="text-primary font-data-mono text-xs">0.82</span>
+</div>
+<input class="w-full accent-primary" max="100" min="0" type="range" value="82"/>
+</div>
+<div class="space-y-base">
+<div class="flex justify-between items-end">
+<label class="text-neutral-300 font-label-caps text-[11px] uppercase tracking-widest">VBS (Volume Bias)</label>
+<span class="text-primary font-data-mono text-xs">0.45</span>
+</div>
+<input class="w-full accent-primary" max="100" min="0" type="range" value="45"/>
+</div>
+<div class="space-y-base">
+<div class="flex justify-between items-end">
+<label class="text-neutral-300 font-label-caps text-[11px] uppercase tracking-widest">PVD (Pressure Var)</label>
+<span class="text-primary font-data-mono text-xs">0.91</span>
+</div>
+<input class="w-full accent-primary" max="100" min="0" type="range" value="91"/>
+</div>
+<div class="space-y-base">
+<div class="flex justify-between items-end">
+<label class="text-neutral-300 font-label-caps text-[11px] uppercase tracking-widest">LIP (Liquidity Ion)</label>
+<span class="text-primary font-data-mono text-xs">0.24</span>
+</div>
+<input class="w-full accent-primary" max="100" min="0" type="range" value="24"/>
+</div>
+</div>
+<div class="bg-black/40 border border-dashed border-white/10 p-sm rounded-lg">
+<p class="text-neutral-500 font-body-main text-[12px] italic">Weights are currently optimized for High-Frequency Surveillance. Total bias coefficient: 2.42x</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Sensitivity & Network -->
+<section class="col-span-12 lg:col-span-5 space-y-gutter">
+<!-- Anomaly Threshold -->
+<div class="bg-surface-container-low border border-white/5 p-md">
+<h3 class="font-label-caps text-label-caps text-primary mb-md flex items-center gap-2">
+<span class="material-symbols-outlined text-base">warning</span> ANOMALY SENSITIVITY
+                        </h3>
+<div class="flex flex-col gap-sm">
+<div class="bg-[#171717] p-sm border border-white/10 flex justify-between items-center">
+<div>
+<div class="text-on-background font-heading-md text-sm">Ghost Threshold</div>
+<div class="text-neutral-500 text-[10px] uppercase font-data-mono">Trigger alert at sigma deviation</div>
+</div>
+<div class="text-primary font-data-mono text-xl">σ3.4</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-neutral-500 font-label-caps text-[10px]">RELAXED</span>
+<div class="flex-1 h-2 bg-white/5 flex gap-1">
+<div class="h-full w-1/4 bg-primary/20"></div>
+<div class="h-full w-1/4 bg-primary/40"></div>
+<div class="h-full w-1/4 bg-primary/80"></div>
+<div class="h-full w-1/4 border-2 border-primary"></div>
+</div>
+<span class="text-primary font-label-caps text-[10px]">PARANOID</span>
+</div>
+</div>
+</div>
+<!-- Network/Proxy Settings -->
+<div class="bg-surface-container-low border border-white/5 p-md">
+<h3 class="font-label-caps text-label-caps text-primary mb-md flex items-center gap-2">
+<span class="material-symbols-outlined text-base">lan</span> NETWORK PROTOCOL
+                        </h3>
+<div class="space-y-sm">
+<div class="flex items-center justify-between p-sm bg-black/20">
+<span class="text-neutral-300 text-sm">Proxy Routing</span>
+<div class="h-6 w-11 bg-primary/40 rounded-full relative cursor-pointer">
+<div class="absolute right-1 top-1 h-4 w-4 bg-primary rounded-full"></div>
+</div>
+</div>
+<div class="space-y-base">
+<label class="text-neutral-500 font-label-caps text-[10px] tracking-widest uppercase">Proxy SOCKS5 Node</label>
+<input class="w-full bg-black border border-white/10 px-4 py-2 text-data-mono text-on-surface focus:border-primary" placeholder="127.0.0.1:9050" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="p-sm border border-white/5 bg-black/20 text-center">
+<div class="text-neutral-500 text-[9px] uppercase font-bold">Latency</div>
+<div class="text-secondary font-data-mono text-sm">12ms</div>
+</div>
+<div class="p-sm border border-white/5 bg-black/20 text-center">
+<div class="text-neutral-500 text-[9px] uppercase font-bold">DNS Status</div>
+<div class="text-secondary font-data-mono text-sm">SECURE</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Version Control Card -->
+<div class="bg-gradient-to-br from-surface-container-high to-black border border-white/10 p-md relative group">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-on-background font-heading-md text-sm mb-base">Integrity Engine v4.2.0</h4>
+<p class="text-neutral-500 text-[11px] leading-relaxed">Stable build. Hardened against memory-leak vectors and temporal anomalies in stream data.</p>
+</div>
+<span class="material-symbols-outlined text-secondary">verified</span>
+</div>
+<div class="mt-md flex gap-sm">
+<button class="flex-1 py-2 border border-primary/50 text-primary font-label-caps text-[10px] tracking-widest uppercase hover:bg-primary/10 transition-all">Check Updates</button>
+<button class="flex-1 py-2 bg-white/5 text-neutral-400 font-label-caps text-[10px] tracking-widest uppercase hover:bg-white/10 transition-all">Rollback</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Action Bar -->
+<footer class="mt-xl pt-lg border-t border-white/10 flex justify-between items-center">
+<div class="flex items-center gap-gutter">
+<button class="bg-primary text-on-primary font-label-caps px-8 py-4 tracking-[0.2em] hover:opacity-90 active:scale-[0.98] transition-all">
+                        DEPLOY CHANGES
+                    </button>
+<button class="text-neutral-500 font-label-caps text-xs tracking-widest hover:text-neutral-300">
+                        RESET TO DEFAULT
+                    </button>
+</div>
+<div class="text-right">
+<span class="text-neutral-600 font-data-mono text-[10px] uppercase block mb-1">Last Configured</span>
+<span class="text-neutral-400 font-data-mono text-xs uppercase">OCT 24, 2024 — 14:02:11 UTC</span>
+</div>
+</footer>
+</div>
+<!-- Global Footer -->
+<div class="w-full flex flex-col items-center gap-4 mt-auto bg-[#0A0A0A] border-t border-white/5 py-8">
+<div class="flex gap-8">
+<a class="text-neutral-600 hover:text-cyan-400 font-['Inter'] text-[10px] uppercase tracking-widest transition-colors" href="#">Privacy Policy</a>
+<a class="text-neutral-600 hover:text-cyan-400 font-['Inter'] text-[10px] uppercase tracking-widest transition-colors" href="#">Terms of Service</a>
+<a class="text-neutral-600 hover:text-cyan-400 font-['Inter'] text-[10px] uppercase tracking-widest transition-colors" href="#">API Documentation</a>
+</div>
+<div class="text-neutral-600 font-['Inter'] text-[10px] uppercase tracking-widest">
+                © 2024 GHOSTRADE TERMINAL. SECURED PROTOCOL.
+            </div>
+</div>
+</main>
+</body></html>
+
+Another Snippet:
+
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#ffb3ad",
+                    "primary": "#4cd7f6",
+                    "surface-tint": "#4cd7f6",
+                    "on-tertiary-container": "#7e000f",
+                    "on-primary-container": "#00424f",
+                    "outline-variant": "#3d494c",
+                    "surface-variant": "#353534",
+                    "on-primary-fixed-variant": "#004e5c",
+                    "on-error": "#690005",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-container": "#201f1f",
+                    "on-secondary-fixed-variant": "#005236",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-tertiary-fixed": "#410004",
+                    "background": "#0A0A0A",
+                    "surface-bright": "#3a3939",
+                    "primary-fixed-dim": "#4cd7f6",
+                    "error": "#ffb4ab",
+                    "secondary-fixed-dim": "#4edea3",
+                    "primary-container": "#06b6d4",
+                    "secondary": "#4edea3",
+                    "surface-container-low": "#1c1b1b",
+                    "on-surface": "#e5e2e1",
+                    "surface-container-high": "#2a2a2a",
+                    "on-tertiary-fixed-variant": "#930013",
+                    "surface": "#131313",
+                    "tertiary-fixed": "#ffdad7",
+                    "primary-fixed": "#acedff",
+                    "on-error-container": "#ffdad6",
+                    "on-primary": "#003640",
+                    "tertiary-container": "#ff817a",
+                    "on-tertiary": "#68000a",
+                    "on-primary-fixed": "#001f26",
+                    "error-container": "#93000a",
+                    "secondary-container": "#00a572",
+                    "inverse-primary": "#00687a",
+                    "inverse-on-surface": "#313030",
+                    "outline": "#869397",
+                    "surface-container-highest": "#353534",
+                    "on-background": "#e5e2e1",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-surface-variant": "#bcc9cd",
+                    "on-secondary-fixed": "#002113",
+                    "surface-dim": "#131313",
+                    "on-secondary-container": "#00311f",
+                    "on-secondary": "#003824",
+                    "tertiary-fixed-dim": "#ffb3ad",
+                    "warning": "#F59E0B"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "lg": "40px",
+                    "xs": "8px",
+                    "md": "24px",
+                    "margin": "32px",
+                    "gutter": "20px",
+                    "xl": "64px",
+                    "sm": "16px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "data-mono": ["Space Grotesk"],
+                    "heading-md": ["Inter"],
+                    "body-main": ["Inter"],
+                    "label-caps": ["Space Grotesk"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "data-mono": ["14px", {"lineHeight": "1.5", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "heading-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-main": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(23, 23, 23, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .warning-glow {
+            border-color: #F59E0B;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-main selection:bg-warning/30">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-8 h-16 bg-[#0A0A0A]/80 backdrop-blur-xl border-b border-white/10 font-['Inter'] tracking-tight">
+<div class="text-xl font-black tracking-tighter text-cyan-500">GHOSTRADE</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-neutral-500 hover:text-neutral-300 transition-colors cursor-pointer active:opacity-80" href="#">Dashboard</a>
+<a class="text-cyan-400 border-b-2 border-cyan-500 pb-1 cursor-pointer active:opacity-80" href="#">Signals</a>
+<a class="text-neutral-500 hover:text-neutral-300 transition-colors cursor-pointer active:opacity-80" href="#">History</a>
+<a class="text-neutral-500 hover:text-neutral-300 transition-colors cursor-pointer active:opacity-80" href="#">Watchlist</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined text-neutral-400 group-hover:text-cyan-500 transition-colors cursor-pointer" data-icon="notifications">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-warning rounded-full"></span>
+</div>
+<span class="material-symbols-outlined text-neutral-400 hover:text-cyan-500 transition-colors cursor-pointer" data-icon="settings">settings</span>
+<div class="w-8 h-8 rounded bg-surface-container-highest border border-white/10 flex items-center justify-center overflow-hidden">
+<img alt="User Terminal Profile" class="w-full h-full object-cover" data-alt="professional portrait of a technical analyst in a dark environment with blue terminal light reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyfhTQX4_7vq6-vkbyNOqfpSFvpv-jhLPZcfIXRgJ0x6LmRhjKZkFnoAK9RJWD7bGSssMXF59KQ1kkAIRm8SZ0DDk5qK0-hW5JEbnMwsA5nHvzQWrPx_9i-Dqz-bvptka0RLrYINyva_xjm4hzBR0prDPaB33haxEqhCQoW-C07x03bvlmj3-b0lSEaZFV_LvZAVYl2ozVfd9uaVpR0kULCPHbpr3WbexdMSrOCxbh1YkJrF_f_1YroLFg096Cbt9vwighxoMQ7lL9"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-[#171717] border-r border-white/10 flex flex-col pt-6 z-40 hidden lg:flex">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 mb-1">
+<div class="w-2 h-2 rounded-full bg-warning animate-pulse"></div>
+<span class="font-['Inter'] uppercase text-[11px] font-bold tracking-widest text-cyan-500">INTEGRITY ENGINE</span>
+</div>
+<p class="text-[10px] text-neutral-500 font-data-mono tracking-widest">v4.2.0-STABLE</p>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="px-6 py-3 flex items-center gap-4 text-neutral-500 hover:text-neutral-200 transition-all duration-200 ease-in-out cursor-pointer hover:bg-white/5">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+<span class="font-['Inter'] uppercase text-[11px] font-bold tracking-widest">Terminal</span>
+</div>
+<div class="px-6 py-3 flex items-center gap-4 bg-cyan-500/10 text-cyan-400 border-r-2 border-cyan-500 transition-all duration-200 ease-in-out cursor-pointer">
+<span class="material-symbols-outlined" data-icon="sensors">sensors</span>
+<span class="font-['Inter'] uppercase text-[11px] font-bold tracking-widest">Live Feed</span>
+</div>
+<div class="px-6 py-3 flex items-center gap-4 text-neutral-500 hover:text-neutral-200 transition-all duration-200 ease-in-out cursor-pointer hover:bg-white/5">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="font-['Inter'] uppercase text-[11px] font-bold tracking-widest">Risk Engine</span>
+</div>
+<div class="px-6 py-3 flex items-center gap-4 text-neutral-500 hover:text-neutral-200 transition-all duration-200 ease-in-out cursor-pointer hover:bg-white/5">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+<span class="font-['Inter'] uppercase text-[11px] font-bold tracking-widest">Ghost Logs</span>
+</div>
+<div class="px-6 py-3 flex items-center gap-4 text-neutral-500 hover:text-neutral-200 transition-all duration-200 ease-in-out cursor-pointer hover:bg-white/5">
+<span class="material-symbols-outlined" data-icon="memory">memory</span>
+<span class="font-['Inter'] uppercase text-[11px] font-bold tracking-widest">System Health</span>
+</div>
+</nav>
+<div class="p-6 mt-auto border-t border-white/5">
+<button class="w-full py-3 bg-cyan-500 text-on-primary font-label-caps text-xs rounded hover:bg-primary-container transition-all active:opacity-80">
+                INITIATE SCAN
+            </button>
+<div class="mt-6 space-y-4">
+<div class="flex items-center gap-4 text-neutral-500 hover:text-cyan-400 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="description">description</span>
+<span class="font-['Inter'] uppercase text-[10px] font-bold tracking-widest">Docs</span>
+</div>
+<div class="flex items-center gap-4 text-neutral-500 hover:text-cyan-400 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="help_center">help_center</span>
+<span class="font-['Inter'] uppercase text-[10px] font-bold tracking-widest">Support</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-16 min-h-screen flex flex-col">
+<div class="p-margin flex flex-col gap-gutter">
+<!-- Breadcrumbs / Header -->
+<div class="flex justify-between items-end border-b border-white/5 pb-4">
+<div>
+<h2 class="font-heading-md text-on-surface mb-1">TERMINAL ANALYSIS: <span class="text-warning">TSLA</span></h2>
+<div class="flex items-center gap-4">
+<span class="font-data-mono text-neutral-400 text-xs">IDENTIFIER: US88160R1014</span>
+<span class="font-data-mono text-neutral-400 text-xs">EXCHANGE: NASDAQ</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="px-3 py-1 bg-warning/10 border border-warning/30 rounded-full flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-warning"></div>
+<span class="font-label-caps text-[10px] text-warning">SUSPICIOUS ACTIVITY</span>
+</div>
+<span class="font-data-mono text-xs text-neutral-500">TIMESTAMP: 2024.05.24 14:32:01 UTC</span>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Integrity Score Gauge (4 columns) -->
+<div class="col-span-12 md:col-span-4 glass-panel p-md rounded-xl flex flex-col items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-warning/5 to-transparent opacity-30"></div>
+<span class="font-label-caps text-xs text-neutral-400 mb-6 self-start">INTEGRITY SCORE</span>
+<div class="relative w-48 h-48 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="rgba(255,255,255,0.05)" stroke-width="8"></circle>
+<circle cx="50" cy="50" fill="none" r="45" stroke="url(#warning-grad)" stroke-dasharray="282.7" stroke-dashoffset="155.5" stroke-linecap="round" stroke-width="8"></circle>
+<defs>
+<lineargradient id="warning-grad" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#F59E0B"></stop>
+<stop offset="100%" style="stop-color:#ef4444"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-display-lg text-6xl text-warning">45</span>
+<span class="font-label-caps text-[10px] text-neutral-500 tracking-tighter">SURVEILLANCE LEVEL</span>
+</div>
+</div>
+<div class="mt-8 w-full border-t border-white/5 pt-4 flex justify-between items-center">
+<div class="text-center">
+<p class="text-[10px] text-neutral-500 font-label-caps mb-1">STABILITY</p>
+<p class="font-data-mono text-sm text-neutral-200">MODERATE</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-neutral-500 font-label-caps mb-1">RISK INDEX</p>
+<p class="font-data-mono text-sm text-on-tertiary-container">ELEVATED</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-neutral-500 font-label-caps mb-1">CONFIDENCE</p>
+<p class="font-data-mono text-sm text-neutral-200">88%</p>
+</div>
+</div>
+</div>
+<!-- Price Chart with Anomalies (8 columns) -->
+<div class="col-span-12 md:col-span-8 glass-panel p-md rounded-xl relative">
+<div class="flex justify-between items-center mb-6">
+<span class="font-label-caps text-xs text-neutral-400">PRICE/VOLUME DIVERGENCE CHART</span>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-0.5 bg-cyan-500"></div>
+<span class="text-[10px] font-data-mono text-neutral-400">PRICE</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-0.5 bg-warning border-dashed border-t border-warning"></div>
+<span class="text-[10px] font-data-mono text-neutral-400">ANOMALY DETECTED</span>
+</div>
+</div>
+</div>
+<div class="h-64 w-full relative">
+<!-- Simulated Chart Grid -->
+<div class="absolute inset-0 grid grid-rows-4 gap-0">
+<div class="border-b border-white/5"></div>
+<div class="border-b border-white/5"></div>
+<div class="border-b border-white/5"></div>
+<div class="border-b border-white/5"></div>
+</div>
+<!-- Price Line -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M0 60 L10 55 L20 65 L30 40 L40 45 L50 35 L60 55 L70 50 L80 80 L90 75 L100 65" fill="none" stroke="#06b6d4" stroke-width="1.5"></path>
+<!-- Anomaly Highlights -->
+<circle cx="30" cy="40" fill="rgba(245, 158, 11, 0.2)" r="4" stroke="#F59E0B" stroke-width="1"></circle>
+<circle cx="80" cy="80" fill="rgba(245, 158, 11, 0.2)" r="4" stroke="#F59E0B" stroke-width="1"></circle>
+</svg>
+<!-- Labels -->
+<div class="absolute right-0 top-0 h-full flex flex-col justify-between text-[9px] font-data-mono text-neutral-600">
+<span>$185.00</span>
+<span>$180.00</span>
+<span>$175.00</span>
+<span>$170.00</span>
+<span>$165.00</span>
+</div>
+</div>
+<div class="mt-4 flex justify-between text-[9px] font-data-mono text-neutral-600">
+<span>10:00</span>
+<span>11:00</span>
+<span>12:00</span>
+<span>13:00</span>
+<span>14:00</span>
+<span>15:00</span>
+</div>
+</div>
+<!-- Anomaly Explainer Card (6 columns) -->
+<div class="col-span-12 md:col-span-6 glass-panel warning-glow p-md rounded-xl">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-warning" data-icon="report_problem">report_problem</span>
+<span class="font-label-caps text-xs text-warning tracking-widest">ANOMALY EXPLAINER</span>
+</div>
+<h3 class="font-heading-md text-on-surface mb-3">Moderate Volume-Price Divergence</h3>
+<p class="text-neutral-400 font-body-main text-sm leading-relaxed mb-6">
+                        System flagged a significant disconnect between localized selling pressure and price action. While price remained stable at $178.40, buy-side volume dropped by 42% over a 3-minute window without a corresponding price retracement. This suggests potential high-frequency spoofing or hidden liquidity removal.
+                    </p>
+<div class="space-y-3">
+<div class="flex justify-between items-center p-3 bg-white/5 rounded">
+<span class="text-xs font-data-mono text-neutral-300">PATTERN MATCH</span>
+<span class="text-xs font-data-mono text-warning">SPOOFING-TYPE-B</span>
+</div>
+<div class="flex justify-between items-center p-3 bg-white/5 rounded">
+<span class="text-xs font-data-mono text-neutral-300">DIVERGENCE DELTA</span>
+<span class="text-xs font-data-mono text-on-tertiary-container">+14.2%</span>
+</div>
+</div>
+</div>
+<!-- Integrity Log (6 columns) -->
+<div class="col-span-12 md:col-span-6 glass-panel p-md rounded-xl flex flex-col">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-cyan-500" data-icon="history_edu">history_edu</span>
+<span class="font-label-caps text-xs text-neutral-400 tracking-widest">INTEGRITY LOG</span>
+</div>
+<button class="text-[10px] font-data-mono text-cyan-500 hover:underline">EXPORT LOG</button>
+</div>
+<div class="space-y-4 overflow-y-auto max-h-64 pr-2 custom-scrollbar">
+<div class="flex gap-4 border-l border-warning pl-4 relative">
+<div class="absolute -left-1.5 top-0 w-3 h-3 rounded-full bg-warning border-4 border-[#171717]"></div>
+<span class="font-data-mono text-[10px] text-neutral-500 whitespace-nowrap">14:32:01</span>
+<div>
+<p class="text-xs font-bold text-on-surface">Anomaly Triggered</p>
+<p class="text-[10px] text-neutral-500">Volume drop detected on NASDAQ-L3 feed.</p>
+</div>
+</div>
+<div class="flex gap-4 border-l border-white/10 pl-4 relative">
+<div class="absolute -left-1.5 top-0 w-3 h-3 rounded-full bg-neutral-700 border-4 border-[#171717]"></div>
+<span class="font-data-mono text-[10px] text-neutral-500 whitespace-nowrap">14:28:45</span>
+<div>
+<p class="text-xs font-bold text-neutral-400">Baseline Recalibrated</p>
+<p class="text-[10px] text-neutral-600">Dynamic thresholds updated for intraday volatility.</p>
+</div>
+</div>
+<div class="flex gap-4 border-l border-white/10 pl-4 relative">
+<div class="absolute -left-1.5 top-0 w-3 h-3 rounded-full bg-neutral-700 border-4 border-[#171717]"></div>
+<span class="font-data-mono text-[10px] text-neutral-500 whitespace-nowrap">14:15:20</span>
+<div>
+<p class="text-xs font-bold text-neutral-400">Liquidity Check</p>
+<p class="text-[10px] text-neutral-600">Spread analysis completed: Stable at 0.04.</p>
+</div>
+</div>
+<div class="flex gap-4 border-l border-white/10 pl-4 relative">
+<div class="absolute -left-1.5 top-0 w-3 h-3 rounded-full bg-neutral-700 border-4 border-[#171717]"></div>
+<span class="font-data-mono text-[10px] text-neutral-500 whitespace-nowrap">13:59:11</span>
+<div>
+<p class="text-xs font-bold text-neutral-400">Entity Identified</p>
+<p class="text-[10px] text-neutral-600">TSLA mapping successful. Node 04 reporting.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Section -->
+<footer class="w-full flex flex-col items-center gap-4 mt-auto border-t border-white/5 py-8 bg-[#0A0A0A] font-['Inter'] text-[10px] uppercase tracking-widest">
+<div class="flex gap-8">
+<a class="text-neutral-600 hover:text-cyan-400 transition-colors opacity-100" href="#">Privacy Policy</a>
+<a class="text-neutral-600 hover:text-cyan-400 transition-colors opacity-100" href="#">Terms of Service</a>
+<a class="text-neutral-600 hover:text-cyan-400 transition-colors opacity-100" href="#">API Documentation</a>
+</div>
+<p class="text-neutral-600">© 2024 GHOSTRADE TERMINAL. SECURED PROTOCOL.</p>
+</footer>
+</div>
+</main>
+<!-- Floating Badge for Mobile (Context UI) -->
+<div class="fixed bottom-6 right-6 lg:hidden">
+<button class="w-14 h-14 bg-cyan-500 rounded-full flex items-center justify-center shadow-lg shadow-cyan-500/20 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-primary" data-icon="search">search</span>
+</button>
+</div>
+</body></html>

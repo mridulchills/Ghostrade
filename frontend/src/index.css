@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #FFFFFF;
+  --color-primary-container: #CCCCCC;
+  --color-secondary: #4edea3;
+  --color-secondary-container: #00a572;
+  --color-error: #ffb4ab;
+  --color-error-container: #93000a;
+  --color-tertiary: #ffb3ad;
+  --color-tertiary-container: #ff817a;
+  --color-background: #0A0A0A;
+  --color-surface: #131313;
+  --color-surface-dim: #131313;
+  --color-surface-variant: #353534;
+  --color-surface-container: #201f1f;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-container-highest: #353534;
+  --color-surface-bright: #3a3939;
+  --color-surface-tint: #FFFFFF;
+  --color-on-background: #e5e2e1;
+  --color-on-surface: #e5e2e1;
+  --color-on-surface-variant: #bcc9cd;
+  --color-on-primary: #003640;
+  --color-on-primary-container: #00424f;
+  --color-on-secondary: #003824;
+  --color-on-secondary-container: #00311f;
+  --color-on-error: #690005;
+  --color-on-error-container: #ffdad6;
+  --color-on-tertiary: #68000a;
+  --color-on-tertiary-container: #7e000f;
+  --color-outline: #869397;
+  --color-outline-variant: #3d494c;
+  --color-inverse-surface: #e5e2e1;
+  --color-inverse-on-surface: #313030;
+  --color-inverse-primary: #00687a;
+  --color-secondary-fixed: #6ffbbe;
+  --color-secondary-fixed-dim: #4edea3;
+  --color-on-secondary-fixed: #002113;
+  --color-on-secondary-fixed-variant: #005236;
+  --color-primary-fixed: #FFFFFF;
+  --color-primary-fixed-dim: #EEEEEE;
+  --color-on-primary-fixed: #001f26;
+  --color-on-primary-fixed-variant: #004e5c;
+  --color-tertiary-fixed: #ffdad7;
+  --color-tertiary-fixed-dim: #ffb3ad;
+  --color-on-tertiary-fixed: #410004;
+  --color-on-tertiary-fixed-variant: #930013;
+  --color-warning: #F59E0B;
+
+  --spacing-xl: 64px;
+  --spacing-margin: 32px;
+  --spacing-md: 24px;
+  --spacing-lg: 40px;
+  --spacing-xs: 8px;
+  --spacing-base: 4px;
+  --spacing-gutter: 20px;
+  --spacing-sm: 16px;
+
+  --font-body-main: "Inter", sans-serif;
+  --font-data-mono: "Space Grotesk", sans-serif;
+  --font-display-lg: "Inter", sans-serif;
+  --font-heading-md: "Inter", sans-serif;
+  --font-label-caps: "Space Grotesk", sans-serif;
+
+  --text-body-main: 16px;
+  --text-body-main--line-height: 1.6;
+  --text-body-main--font-weight: 400;
+  --text-data-mono: 14px;
+  --text-data-mono--line-height: 1.5;
+  --text-data-mono--letter-spacing: 0.02em;
+  --text-data-mono--font-weight: 500;
+  --text-display-lg: 48px;
+  --text-display-lg--line-height: 1.1;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight: 700;
+  --text-heading-md: 24px;
+  --text-heading-md--line-height: 1.3;
+  --text-heading-md--letter-spacing: -0.01em;
+  --text-heading-md--font-weight: 600;
+  --text-label-caps: 12px;
+  --text-label-caps--line-height: 1;
+  --text-label-caps--letter-spacing: 0.1em;
+  --text-label-caps--font-weight: 700;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  font-family: var(--font-body-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.4); }
+
+/* Glass surfaces */
+.glass-panel, .glass-surface {
+  background: rgba(23, 23, 23, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.glass-card {
+  background: rgba(23, 23, 23, 0.8);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.luminous-edge {
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Grid background */
+.grid-matrix {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Glows */
+.glow-border:focus-within {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.25);
+  border-color: rgba(6, 182, 212, 0.4);
+}
+.text-glow { text-shadow: 0 0 12px rgba(255, 255, 255, 0.6); }
+.crimson-glow {
+  box-shadow: 0 0 20px rgba(255,129,122,0.15);
+  border-color: #7e000f;
+}
+.warning-glow {
+  box-shadow: 0 0 15px rgba(245,158,11,0.2);
+  border-color: #F59E0B;
+}
+.cyan-glow { box-shadow: 0 0 15px rgba(76,215,246,0.15); }
+
+/* Sidebar border accent */
+.sidebar-active {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  border-right: 2px solid #FFFFFF;
+}
+
+/* Signal bar fill */
+.signal-bar {
+  height: 3px;
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+/* Pulsing dot */
+.pulse-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+/* Log timeline */
+.log-line { border-left: 1px solid rgba(255,255,255,0.08); padding-left: 16px; position: relative; }
+.log-line::before {
+  content: '';
+  position: absolute;
+  left: -5px; top: 4px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #353534;
+  border: 2px solid #1c1b1b;
+}
+.log-line.flagged::before { background: #ff817a; }
+.log-line.synced::before { background: #FFFFFF; }
+.log-line.blocked::before { background: #4edea3; }
+
+/* Ticker tape */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-tape { animation: ticker 30s linear infinite; white-space: nowrap; display: inline-flex; gap: 48px; }
+
+/* Material icons fix */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* Range slider */
+input[type="range"] { appearance: none; -webkit-appearance: none; background: transparent; width: 100%; }
+input[type="range"]::-webkit-slider-runnable-track { background: #353534; height: 3px; border-radius: 2px; }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; height: 12px; width: 12px; background: #FFFFFF; margin-top: -4.5px; border-radius: 2px; }

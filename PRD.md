@@ -1,6 +1,6 @@
 # GHOSTRADE  
 ## Market Integrity Engine  
-### Product Requirements Document (PRD) · v2.0 · Team O(4)
+### Product Requirements Document (PRD) · v2.0 · Team Blaugrana
 
 ---
 
@@ -246,4 +246,4 @@ The following features are explicitly deferred from v1 but represent the natural
 
 The market can lie. Now you'll know when it does. 👻
 
-GHOSTRADE  ·  PRD v2.0  ·  Team O(4)
+GHOSTRADE  ·  PRD v2.0  ·  Team Blaugrana

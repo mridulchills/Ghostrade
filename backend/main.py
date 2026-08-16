@@ -1,4 +1,6 @@
 import traceback
+import logging
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -18,9 +20,19 @@ import schemas
 from twilio.rest import Client
 import os
 
-Base.metadata.create_all(bind=engine)
+logger = logging.getLogger(__name__)
 
-app = FastAPI(title="GHOSTRADE API")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup: create tables (won't crash the app if it fails)
+    try:
+        Base.metadata.create_all(bind=engine)
+        logger.info("Database tables created successfully.")
+    except Exception as e:
+        logger.error(f"Failed to create database tables: {e}")
+    yield
+
+app = FastAPI(title="GHOSTRADE API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
